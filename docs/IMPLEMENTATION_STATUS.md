@@ -154,3 +154,21 @@ Recorded in `logs/tasks/MULTIMEDIA-PROJECTS-001.md` (static verifier, production
 
 ### Verification evidence
 Recorded in `logs/tasks/FEATURED-PROJECTS-001.md`: verifier checks for exactly four cards / PrettyPick fourth / no separate Supporting block (verifier PASSED, exit 0), production build (exit 0), and desktop/mobile browser QA at 1440/768/390/375 px with zero console errors and zero 4xx. Commit/push and Netlify confirmation are added to that record after the release steps are actually executed.
+
+---
+
+## Addendum — FEATURED-PROJECTS-UI-001 (2026-11-19)
+
+**Status:** Implemented and locally verified. Commit/push and Netlify deployment verification are recorded with real evidence after release in `logs/tasks/FEATURED-PROJECTS-UI-001.md`.
+
+### What changed
+- All four Featured Projects cards now use one standard `ProjectCard` presentation. The auction card's special `featured` variant (2×2 span, 32px title, "Featured" badge) was removed; all cards share the same 2-column span, `text-h4` title, media band, padding, chip style, feature-list style and footer placement.
+- The link/footnote row has a 44px minimum height so linked and footnote-only cards in the same row align.
+- Desktop is now a balanced 2×2 with no empty grid cell; tablet stays 2 columns and mobile 1 column. Every title, description, technology, link, footnote, PrettyPick feature and its status label is preserved. No images were added; the cards use a shared CSS-only media band.
+
+### Files
+- Source: `src/components/FeaturedProjects.jsx`, `src/components/ProjectCard.jsx`
+- Tooling/docs: `scripts/verify-reel001.mjs`, `docs/HOMEPAGE_LAYOUT.md`, `docs/COMPONENT_SPEC.md`, `docs/DESIGN_DECISIONS.md`, `docs/superpowers/specs/2026-11-19-featured-projects-ui-001-design.md`, `logs/tasks/FEATURED-PROJECTS-UI-001.md`
+
+### Verification evidence
+Recorded in `logs/tasks/FEATURED-PROJECTS-UI-001.md`: read-only browser recon with measured geometry before the fix, verifier PASSED (exit 0), production build (exit 0), and desktop/tablet/mobile browser QA plus independent review. Release evidence is appended after commit/push and Netlify confirmation.

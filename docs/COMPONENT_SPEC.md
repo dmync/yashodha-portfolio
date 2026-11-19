@@ -176,18 +176,17 @@
 
 ## 10. ProjectCard
 
-**Responsibility:** Specialized `BentoCard` for a featured project in the BentoGrid. Presents project title, short description, technologies (tags), and a link to the project/case study. Can also present an optional key-features list and a small in-card status label.
+**Responsibility:** Standardized `BentoCard` for a Featured Project in the BentoGrid. Presents project title, short description, technologies (tags), and a link to the project/case study. Can also present an optional key-features list and a small in-card status label. All four project cards use this one presentation (FEATURED-PROJECTS-UI-001).
 
 **Props (plain language):**
 - Inherits all `BentoCard` props.
 - `technologies` — list of tag labels to render as `Tag` chips.
-- `featured` — whether this is a featured (larger-span) project — optional boolean.
 - `features` — optional list of key features. When present and non-empty, rendered as an accessible list between the description and the technology chips; one column on mobile/tablet, two columns from `lg` where the card spans two grid columns.
-- `statusLabel` — optional short status badge rendered in the card header next to the project number (e.g. "Personal Project / Working Prototype"). Uses the same badge tokens as the Featured badge; the header wraps on narrow cards. Supplied only by PrettyPick LK; no separate category or section is implied.
+- `statusLabel` — optional short status badge rendered in the card header next to the project number (e.g. "Personal Project / Working Prototype"). Uses the same badge tokens as other site badges; the header wraps on narrow cards. Supplied only by PrettyPick LK; no separate category or section is implied.
 - `index` — zero-based card number, displayed as `Project 01` etc.
-- `link`, `linkLabel`, `footnote` — optional link and supporting note; omitted for the personal prototype.
+- `link`, `linkLabel`, `footnote` — optional link and supporting note; omitted for the personal prototype. The link/footnote row has a 44px minimum height so linked and footnote-only cards align.
 
-**Variants / states:** `featured` (larger grid span), `standard`, optional `features` list, optional `statusLabel`.
+**Variants / states:** One standard card presentation; optional `features` list, optional `statusLabel`. No larger-span `featured` variant.
 
 **Relationships:** Child of `BentoGrid`; contains `Tag` components; rendered in Featured Projects section.
 

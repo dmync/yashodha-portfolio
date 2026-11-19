@@ -17,7 +17,7 @@ The homepage must contain the following sections, in this exact order. No other 
 | 1 | Navigation (Header) | Navigation/Header, ThemeToggle | Fixed or sticky top bar |
 | 2 | Hero | EditorialHeading, EditorialBody, AccentButton | Page introduction, primary CTA |
 | 3 | About / Disciplines | EditorialHeading, EditorialBody, Badge/Tag | Discipline tags |
-| 4 | Featured Projects | BentoGrid, BentoCard / ProjectCard | Single bento grid with four project cards: the original three plus PrettyPick LK as the fourth, with a small in-card status label |
+| 4 | Featured Projects | BentoGrid, BentoCard / ProjectCard | Single bento grid with four equally presented project cards: the original three plus PrettyPick LK as the fourth, with a small in-card status label |
 | 5 | Case Studies & Creative Work | BentoGrid, BentoCard / CaseStudyCard, VideoCard, CreativeWorkCard, ImageLightbox | Bento grid plus one nested Creative Work band; `id="case-studies"` is unchanged |
 | 6 | Skills / Technologies | EditorialHeading, Badge/Tag, SectionDivider | Skill tags |
 | 7 | Education & Certifications | EditorialHeading, EditorialBody, EditorialCaption | Content from `docs/EDUCATION_EXPERIENCE_CONTENT.md` |
@@ -39,7 +39,7 @@ Do not add these sections or components without stakeholder approval.
 - The three software case studies remain unchanged. Diagram thumbnails inside the SPES and CTMS cards open the shared ImageLightbox.
 - A single compact band with `id="creative-work"` sits **below** the case-study cards, inside Section 5. It contains four labelled groups: Video Production, Digital Art & Graphic Design, 2D/3D & VFX, and UI/UX Design.
 - Navbar adds one link, **Creative** → `#creative-work`. The scroll spy observes this sub-anchor alongside `#case-studies`; it is not counted as an eleventh homepage section.
-- Section 4 keeps the original three projects unchanged and renders PrettyPick LK as the fourth card in the **same** Featured Projects grid, with a small in-card “Personal Project / Working Prototype” status label. There is no separate supporting category or section.
+- Section 4 keeps the original three projects unchanged and renders PrettyPick LK as the fourth card in the **same** Featured Projects grid, with a small in-card "Personal Project / Working Prototype" status label. There is no separate supporting category or section. All four cards use the same standard card presentation (FEATURED-PROJECTS-UI-001).
 
 ---
 
@@ -58,10 +58,12 @@ Sections 4 (Featured Projects) and 5 (Case Studies) use a **Bento Grid**.
 
 | Card type | Column span | Row span | Priority |
 |-----------|-------------|----------|----------|
-| Featured / featured project | 2 columns | 2 rows | High |
-| Standard project | 1 column | 1–2 rows | Medium |
+| Featured record (Section 5 only) | 2 columns | 2 rows | High |
+| Standard project (Section 4) | 2 columns | 1 row | Equal |
 | Case study highlight | 2 columns | 2 rows | High |
 | Standard case study | 1 column | 1–2 rows | Medium |
+
+> **Section 4 amendment (FEATURED-PROJECTS-UI-001):** Featured Projects now uses **four equal 2-column × 1-row cards** — a balanced 2×2 desktop arrangement with no empty cell. The "featured record" 2-row example above applies to Section 5 (Case Studies), not to Section 4. All four project cards share one `ProjectCard` presentation: identical span, `text-h4` title, media band, padding, badge tokens, feature list, chips and a 44px minimum footer row so linked and footnote-only cards align. This changes only Section 4; the 4 / 2 / 1 responsive column contract is unchanged.
 
 > **On 12-column CSS:** The visual arrangement is and must remain a **4-column asymmetrical bento grid**. If a 12-column CSS grid is used internally for implementation convenience, it must be grouped/subdivided so that the *visual* result preserves exactly the 4-column arrangement. It must **not** become a 12-column visual layout, and the 4-column visual contract must be stated wherever a 12-column implementation is mentioned.
 

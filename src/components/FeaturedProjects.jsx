@@ -10,7 +10,6 @@ const PROJECTS = [
     technologies: ['Angular', 'Node.js', 'Figma handoff'],
     link: null,
     footnote: 'Developed for a US client — not publicly released',
-    featured: true,
   },
   {
     title: 'Sales Performance Evaluation System (SPES)',
@@ -19,7 +18,6 @@ const PROJECTS = [
     technologies: ['PHP', 'MySQL', 'Bootstrap 5', 'Chart.js', 'AJAX'],
     link: 'https://github.com/dmync/spes',
     linkLabel: 'View source on GitHub',
-    featured: false,
   },
   {
     title: 'Cricket Tournament Management System (CTMS)',
@@ -28,7 +26,6 @@ const PROJECTS = [
     technologies: ['PHP', 'MySQL', 'JavaScript', 'AJAX', 'JSON'],
     link: 'https://github.com/dmync/CTMS',
     linkLabel: 'View source on GitHub',
-    featured: false,
   },
   {
     title: 'PrettyPick LK — Inventory Management System',
@@ -46,7 +43,6 @@ const PROJECTS = [
     ],
     link: null,
     footnote: 'Authentication and database security hardening in progress.',
-    featured: false,
     statusLabel: 'Personal Project / Working Prototype',
   },
 ];

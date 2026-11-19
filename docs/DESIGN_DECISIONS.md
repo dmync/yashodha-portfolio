@@ -128,9 +128,23 @@ Developer-approved scoped update; task record `logs/tasks/MULTIMEDIA-PROJECTS-00
 
 ## 9. Featured Projects single collection (FEATURED-PROJECTS-001, 2026-11-19)
 
+> **Superseded in part by §10 (FEATURED-PROJECTS-UI-001):** the single four-card collection, preserved content and in-card status label below remain current; the span/grid arrangement and the empty-cell note do not.
+
 Developer correction: the earlier "separately grouped Supporting card" presentation was wrong. Featured Projects now contains exactly **four** project cards in **one** `BentoGrid label="Featured projects"`: the original three unchanged, then `PrettyPick LK — Inventory Management System` as the fourth.
 
 - The separate `SUPPORTING_PROJECT` object, its "Personal project / working prototype" heading, the "Supporting" badge, the second BentoGrid and the text "Supporting work, kept separate from the three selected projects above." were removed.
-- PrettyPick uses the same `ProjectCard` structure, `featured: false` span, typography, spacing and hover behaviour as SPES and CTMS. All existing details, features and the `link: null` no-demo rule are preserved verbatim; no features were invented and no production-complete claim was made.
+- PrettyPick uses the same `ProjectCard` structure, standard 2-column span, typography, spacing and hover behaviour as SPES and CTMS. All existing details, features and the `link: null` no-demo rule are preserved verbatim; no features were invented and no production-complete claim was made.
 - A new optional `statusLabel` prop renders a small "Personal Project / Working Prototype" badge inside that card only, using the existing badge tokens. The header row can wrap on narrow screens.
-- The intro copy now reads "Four selected projects, including one personal working prototype." The 4/2/1 bento contract, tokens and all other sections are unchanged; the fourth standard card leaves one empty desktop grid cell, accepted rather than redesigning the grid.
+- The intro copy now reads "Four selected projects, including one personal working prototype." The 4/2/1 bento contract, tokens and all other sections are unchanged. The empty desktop grid cell noted in the original implementation was later removed by §10's card-consistency change.
+
+---
+
+## 10. Featured Projects card consistency (FEATURED-PROJECTS-UI-001, 2026-11-19)
+
+Developer directed a scoped polish pass using the SPES and CTMS cards as exact references. Section 4 is now the only exception to the earlier "one featured 2×2 card" example in `HOMEPAGE_LAYOUT.md`.
+
+- **Measured inconsistencies:** the auction card alone used `featured: true` (2×2 span, 32px title, "Featured" badge), producing a 498px internal gap and an empty desktop grid cell; a link row is 44px while a footnote-only row is ~16.8px, offsetting chips/link rows by 27.2px.
+- **Resolution:** the special `featured` variant was removed. All four project cards now use one standard presentation — same 2-column span, `text-h4` title, media band, padding, badge tokens, feature-list style, chips and footer placement. The link/footnote row has a 44px minimum height so cards in the same row align. The desktop grid is a balanced 2×2 with no empty cell; tablet remains 2 columns and mobile 1 column.
+- **Information preserved:** every title, description, technology, link, footnote, PrettyPick's seven features and its status label are unchanged. No features were invented, no information was deleted to force equal heights, and no images were added.
+- **No images/object-fit:** these cards use a shared CSS-only `.fcard__media` band; there are no `<img>` elements, so object-fit consistency was already inherent and no asset change was needed or made.
+- Non-goals honoured: no changes to Case Studies, Creative Work, tokens, theme, responsive column contract or any other section; no new dependencies.

@@ -8,10 +8,8 @@ const SPROCKET_STYLE = {
   backgroundImage: 'repeating-linear-gradient(90deg, var(--color-primary) 0 9px, transparent 9px 19px)',
 };
 
-export default function ProjectCard({ index, title, description, features, technologies, link, linkLabel, footnote, featured = false, statusLabel }) {
-  const spanClasses = featured
-    ? 'md:col-span-2 lg:col-span-2 lg:row-span-2'
-    : 'md:col-span-1 lg:col-span-2';
+export default function ProjectCard({ index, title, description, features, technologies, link, linkLabel, footnote, statusLabel }) {
+  const spanClasses = 'md:col-span-1 lg:col-span-2';
 
   return (
     <article
@@ -34,11 +32,6 @@ export default function ProjectCard({ index, title, description, features, techn
           <span className="text-caption font-semibold uppercase tracking-widest text-text-muted">
             Project {String(index + 1).padStart(2, '0')}
           </span>
-          {featured && (
-            <span className="rounded-sm bg-primary-soft px-2 py-1 text-caption font-semibold uppercase tracking-wider text-primary">
-              Featured
-            </span>
-          )}
           {statusLabel && (
             <span className="rounded-sm bg-primary-soft px-2 py-1 text-caption font-semibold uppercase tracking-wider text-primary">
               {statusLabel}
@@ -46,7 +39,7 @@ export default function ProjectCard({ index, title, description, features, techn
           )}
         </div>
 
-        <h3 className={`mt-6 font-display leading-1.3 text-text-primary ${featured ? 'text-h3 md:text-h2' : 'text-h4'}`}>
+        <h3 className="mt-6 font-display leading-1.3 text-h4 text-text-primary">
           {title}
         </h3>
         <p className="mt-4 text-body-sm text-text-secondary md:text-body">{description}</p>
@@ -74,7 +67,7 @@ export default function ProjectCard({ index, title, description, features, techn
             ))}
           </ul>
 
-          <div className="mt-6 flex flex-wrap items-center gap-4">
+          <div className="mt-6 flex min-h-11 flex-wrap items-center gap-4">
             {link && (
               <a
                 href={link}

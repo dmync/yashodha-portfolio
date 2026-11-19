@@ -349,6 +349,23 @@ function checkContent() {
     );
   });
 
+  check('all four Featured Projects cards share one standard presentation', () => {
+    const source = read(FEATURED_PATH);
+    const projects = source.slice(source.indexOf('const PROJECTS = ['), source.indexOf('\n];'));
+    assert.doesNotMatch(projects, /\bfeatured\s*:/, 'no project may use a special featured variant');
+    const card = read(PROJECT_CARD_PATH);
+    assert.doesNotMatch(card, /\bfeatured\b/i, 'ProjectCard must not keep a featured-only branch');
+    assert.match(card, /const spanClasses = 'md:col-span-1 lg:col-span-2';/, 'all cards must use the same span');
+    assert.match(
+      card,
+      /<h3 className="mt-6 font-display leading-1\.3 text-h4 text-text-primary">/,
+      'all card titles must use text-h4',
+    );
+    assert.match(card, /mt-6 flex min-h-11 flex-wrap items-center gap-4/, 'footer row needs a consistent 44px minimum height');
+    assert.match(card, /features\?\.length > 0/, 'PrettyPick feature list must be preserved');
+    assert.match(card, /\{statusLabel && \(/, 'PrettyPick status label must be preserved');
+  });
+
   check('ProjectCard.jsx renders the optional in-card status label with existing badge tokens', () => {
     const source = read(PROJECT_CARD_PATH);
     assert.match(source, /\bstatusLabel\b/, 'statusLabel prop missing');
