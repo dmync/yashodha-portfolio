@@ -17,7 +17,7 @@ The homepage must contain the following sections, in this exact order. No other 
 | 1 | Navigation (Header) | Navigation/Header, ThemeToggle | Fixed or sticky top bar |
 | 2 | Hero | EditorialHeading, EditorialBody, AccentButton | Page introduction, primary CTA |
 | 3 | About / Disciplines | EditorialHeading, EditorialBody, Badge/Tag | Discipline tags |
-| 4 | Featured Projects | BentoGrid, BentoCard / ProjectCard | Bento grid: 3 main projects plus one clearly labelled supporting personal prototype |
+| 4 | Featured Projects | BentoGrid, BentoCard / ProjectCard | Single bento grid with four project cards: the original three plus PrettyPick LK as the fourth, with a small in-card status label |
 | 5 | Case Studies & Creative Work | BentoGrid, BentoCard / CaseStudyCard, VideoCard, CreativeWorkCard, ImageLightbox | Bento grid plus one nested Creative Work band; `id="case-studies"` is unchanged |
 | 6 | Skills / Technologies | EditorialHeading, Badge/Tag, SectionDivider | Skill tags |
 | 7 | Education & Certifications | EditorialHeading, EditorialBody, EditorialCaption | Content from `docs/EDUCATION_EXPERIENCE_CONTENT.md` |
@@ -39,7 +39,7 @@ Do not add these sections or components without stakeholder approval.
 - The three software case studies remain unchanged. Diagram thumbnails inside the SPES and CTMS cards open the shared ImageLightbox.
 - A single compact band with `id="creative-work"` sits **below** the case-study cards, inside Section 5. It contains four labelled groups: Video Production, Digital Art & Graphic Design, 2D/3D & VFX, and UI/UX Design.
 - Navbar adds one link, **Creative** → `#creative-work`. The scroll spy observes this sub-anchor alongside `#case-studies`; it is not counted as an eleventh homepage section.
-- Section 4 similarly keeps its three main software projects unchanged and adds one separate, clearly labelled supporting card under “Personal project / working prototype”.
+- Section 4 keeps the original three projects unchanged and renders PrettyPick LK as the fourth card in the **same** Featured Projects grid, with a small in-card “Personal Project / Working Prototype” status label. There is no separate supporting category or section.
 
 ---
 

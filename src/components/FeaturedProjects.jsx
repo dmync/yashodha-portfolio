@@ -30,26 +30,26 @@ const PROJECTS = [
     linkLabel: 'View source on GitHub',
     featured: false,
   },
+  {
+    title: 'PrettyPick LK — Inventory Management System',
+    description:
+      'A practical inventory management system developed to support product management and day-to-day operations of a small clothing resale business.',
+    technologies: ['React', 'Vite', 'TypeScript', 'Tailwind CSS', 'Supabase'],
+    features: [
+      'Product management',
+      'Inventory tracking and stock adjustments',
+      'Sales management',
+      'Dashboard and reporting',
+      'CSV export',
+      'Consignment management',
+      'Product image uploads',
+    ],
+    link: null,
+    footnote: 'Authentication and database security hardening in progress.',
+    featured: false,
+    statusLabel: 'Personal Project / Working Prototype',
+  },
 ];
-
-const SUPPORTING_PROJECT = {
-  title: 'PrettyPick LK — Inventory Management System',
-  description:
-    'A practical inventory management system developed to support product management and day-to-day operations of a small clothing resale business.',
-  technologies: ['React', 'Vite', 'TypeScript', 'Tailwind CSS', 'Supabase'],
-  features: [
-    'Product management',
-    'Inventory tracking and stock adjustments',
-    'Sales management',
-    'Dashboard and reporting',
-    'CSV export',
-    'Consignment management',
-    'Product image uploads',
-  ],
-  link: null,
-  footnote: 'Authentication and database security hardening in progress.',
-  featured: false,
-};
 
 export default function FeaturedProjects() {
   return (
@@ -59,7 +59,7 @@ export default function FeaturedProjects() {
           <p className="hud hud--teal">03 — Selected work</p>
           <h2 className="mt-4 text-h2 font-display text-text-primary">Featured Projects</h2>
           <p className="mt-4 text-body text-text-secondary">
-            Three selected software projects, plus one clearly labelled personal prototype.
+            Four selected projects, including one personal working prototype.
           </p>
         </div>
 
@@ -68,26 +68,6 @@ export default function FeaturedProjects() {
             <ProjectCard key={project.title} index={index} {...project} />
           ))}
         </BentoGrid>
-
-        <div className="mt-12 border-t border-border pt-8">
-          <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
-            <div>
-              <p className="text-caption font-semibold uppercase tracking-widest text-text-muted">
-                Personal project / working prototype
-              </p>
-              <p className="mt-1 text-body-sm text-text-secondary">
-                Supporting work, kept separate from the three selected projects above.
-              </p>
-            </div>
-            <span className="rounded-sm bg-primary-soft px-2.5 py-1 text-caption font-semibold uppercase tracking-wider text-primary">
-              Supporting
-            </span>
-          </div>
-
-          <BentoGrid label="Personal project — supporting work">
-            <ProjectCard index={PROJECTS.length} {...SUPPORTING_PROJECT} />
-          </BentoGrid>
-        </div>
       </div>
     </SceneFrame>
   );

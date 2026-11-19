@@ -8,7 +8,7 @@ const SPROCKET_STYLE = {
   backgroundImage: 'repeating-linear-gradient(90deg, var(--color-primary) 0 9px, transparent 9px 19px)',
 };
 
-export default function ProjectCard({ index, title, description, features, technologies, link, linkLabel, footnote, featured = false }) {
+export default function ProjectCard({ index, title, description, features, technologies, link, linkLabel, footnote, featured = false, statusLabel }) {
   const spanClasses = featured
     ? 'md:col-span-2 lg:col-span-2 lg:row-span-2'
     : 'md:col-span-1 lg:col-span-2';
@@ -30,13 +30,18 @@ export default function ProjectCard({ index, title, description, features, techn
       </div>
 
       <div className="flex flex-1 flex-col p-6 md:p-8">
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex flex-wrap items-center justify-between gap-4">
           <span className="text-caption font-semibold uppercase tracking-widest text-text-muted">
             Project {String(index + 1).padStart(2, '0')}
           </span>
           {featured && (
             <span className="rounded-sm bg-primary-soft px-2 py-1 text-caption font-semibold uppercase tracking-wider text-primary">
               Featured
+            </span>
+          )}
+          {statusLabel && (
+            <span className="rounded-sm bg-primary-soft px-2 py-1 text-caption font-semibold uppercase tracking-wider text-primary">
+              {statusLabel}
             </span>
           )}
         </div>

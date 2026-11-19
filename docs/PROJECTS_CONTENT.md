@@ -6,7 +6,7 @@
 
 ---
 
-## Recommended Projects (3 main)
+## Featured Projects (4)
 
 ### 1. US Client House Auction Website
 
@@ -67,10 +67,10 @@ A web-based Cricket Tournament Management System with two phases: (1) Live Crick
 
 ---
 
-### Supporting Personal Project (1) — PrettyPick LK
+### Fourth Featured Project — PrettyPick LK
 
 **Title:** PrettyPick LK — Inventory Management System  
-**Classification:** Personal project / working prototype. Displayed separately from the three main software projects and labelled “Supporting”.  
+**Classification:** Personal project / working prototype. Rendered as the fourth card in the main Featured Projects collection with a small in-card status label — not a separate category or section.  
 **Tech Stack:** React, Vite, TypeScript, Tailwind CSS, Supabase.
 
 **Description (approved copy, 2026-11-19):** A practical inventory management system developed to support product management and day-to-day operations of a small clothing resale business.

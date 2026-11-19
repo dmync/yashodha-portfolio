@@ -301,9 +301,11 @@ function checkContent() {
     assert.ok(source.includes('hardening in progress'), 'PrettyPick footnote missing');
   });
 
-  check('FeaturedProjects.jsx keeps the approved PrettyPick supporting-card copy', () => {
+  check('FeaturedProjects.jsx keeps the approved PrettyPick card copy', () => {
     const source = read(FEATURED_PATH);
-    const card = source.slice(source.indexOf('const SUPPORTING_PROJECT'), source.indexOf('export default function FeaturedProjects'));
+    const titleIndex = source.indexOf("title: 'PrettyPick LK — Inventory Management System'");
+    assert.ok(titleIndex >= 0, 'PrettyPick must be in the main PROJECTS collection');
+    const card = source.slice(titleIndex, source.indexOf('\n  },', titleIndex));
     assert.ok(
       card.includes(
         'A practical inventory management system developed to support product management and day-to-day operations of a small clothing resale business.',
@@ -324,6 +326,35 @@ function checkContent() {
     ]) {
       assert.ok(card.includes(`'${feature}'`), `missing PrettyPick feature: ${feature}`);
     }
+  });
+
+  check('FeaturedProjects.jsx renders exactly four cards in one collection, PrettyPick fourth', () => {
+    const source = read(FEATURED_PATH);
+    const projects = source.slice(source.indexOf('const PROJECTS = ['), source.indexOf('\n];'));
+    const titles = [...projects.matchAll(/title: '([^']+)'/g)].map((match) => match[1]);
+    assert.equal(titles.length, 4, `expected exactly 4 project objects, found ${titles.length}`);
+    assert.deepEqual(titles, PROJECT_TITLES, 'project order must be the original three followed by PrettyPick');
+    assert.equal((source.match(/<BentoGrid\b/g) ?? []).length, 1, 'Featured Projects must use a single BentoGrid');
+    assert.match(source, /\{PROJECTS\.map\(/, 'all four cards must come from the one PROJECTS map');
+    assert.ok(!source.includes('SUPPORTING_PROJECT'), 'separate SUPPORTING_PROJECT still present');
+    assert.ok(
+      !source.includes('Supporting work, kept separate from the three selected projects above.'),
+      'separate Supporting work text still present',
+    );
+    assert.ok(!source.includes('Personal project — supporting work'), 'separate Supporting grid still present');
+    assert.ok(!source.includes('>Supporting<'), 'standalone Supporting badge still present');
+    assert.ok(
+      source.includes("statusLabel: 'Personal Project / Working Prototype'"),
+      'in-card PrettyPick status label missing',
+    );
+  });
+
+  check('ProjectCard.jsx renders the optional in-card status label with existing badge tokens', () => {
+    const source = read(PROJECT_CARD_PATH);
+    assert.match(source, /\bstatusLabel\b/, 'statusLabel prop missing');
+    assert.match(source, /\{statusLabel && \(/, 'conditional status label render missing');
+    assert.match(source, /bg-primary-soft[\s\S]*?text-primary[\s\S]*?\{statusLabel\}/, 'status label must reuse existing badge tokens');
+    assert.match(source, /flex flex-wrap items-center justify-between gap-4/, 'header must wrap the long status label on narrow cards');
   });
 
   check('FeaturedProjects.jsx keeps the auction project live-link-free', () => {
@@ -819,7 +850,7 @@ function checkContact() {
 
 const BADGE_TOKEN_PATHS = [
   'src/components/AboutSection.jsx',
-  'src/components/FeaturedProjects.jsx',
+  'src/components/SkillsSection.jsx',
   'src/components/ProjectCard.jsx',
   'src/components/Navbar.jsx',
 ];

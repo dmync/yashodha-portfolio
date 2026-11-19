@@ -82,7 +82,7 @@ npm run preview  # serve the production build locally
 
 ### What changed
 
-- Section 4 keeps the three approved software projects unchanged and adds a separately grouped, clearly labelled supporting card for **PrettyPick LK — Inventory Management System** with no demo, credentials, PII or figures.
+- Section 4 keeps the three approved software projects unchanged and adds a separately grouped, clearly labelled supporting card for **PrettyPick LK — Inventory Management System** with no demo, credentials, PII or figures. (This presentation was later corrected: FEATURED-PROJECTS-001 moved it into the main four-card collection — see final addendum.)
 - Section 5 is retitled **Case Studies & Creative Work** while keeping `id="case-studies"`. The three case studies are unchanged; SPES and CTMS cards now have diagram thumbnails that open an accessible lightbox.
 - A compact `id="creative-work"` band lives **inside Section 5** with four labelled groups: Video Production, Digital Art & Graphic Design, 2D/3D & VFX, UI/UX Design. It is not an eleventh homepage section.
 - Navbar adds one `Creative` link to `#creative-work`; the existing scroll spy observes the new sub-anchor.
@@ -125,7 +125,7 @@ npm run preview  # serve the production build locally
 ### What changed
 - **Duplicate video fixed:** frame-fingerprint analysis proved `/assets/video/music-video.mp4` was visually identical to `/assets/video/MMW-23-B1-05.mp4`. The “Music Video” card now uses `/assets/video/MMW-23-B1-05-MOV.mp4`, an H.264/AAC 1280×720 MP4 transcoded from the developer-specified `MMW-23-B1-05.MOV`; the unreferenced duplicate was removed.
 - **Three unique posters:** `poster-care-film.jpg`, `poster-music-video.jpg` and `poster-behind-scenes.jpg` are real 1280×720 frames from each video (65–104 KB each), wired through a new optional `poster` prop on `VideoCard`. Native controls, `preload="metadata"`, `playsInline`, no autoplay and the responsive layout are unchanged.
-- **PrettyPick LK copy updated:** the existing separately grouped Supporting card now carries the developer's exact description, `Tailwind CSS` in the stack, the seven-item key-feature list and the development-status footnote, rendered via an optional `features` list in `ProjectCard`. No demo link, credentials, PII or statistics were added.
+- **PrettyPick LK copy updated:** the then-separately grouped Supporting card now carries the developer's exact description, `Tailwind CSS` in the stack, the seven-item key-feature list and the development-status footnote, rendered via an optional `features` list in `ProjectCard`. No demo link, credentials, PII or statistics were added. The separate presentation was subsequently removed in FEATURED-PROJECTS-001.
 
 ### Files
 - Modified: `src/components/VideoCard.jsx`, `src/components/CaseStudies.jsx`, `src/components/FeaturedProjects.jsx`, `src/components/ProjectCard.jsx`
@@ -135,3 +135,22 @@ npm run preview  # serve the production build locally
 
 ### Verification evidence
 Recorded in `logs/tasks/MULTIMEDIA-PROJECTS-001.md` (static verifier, production build, desktop/mobile browser checks, code review, commit/push and Netlify/live-site confirmation).
+
+---
+
+## Addendum — FEATURED-PROJECTS-001 (2026-11-19)
+
+**Status:** Implemented and locally verified. Commit/push and Netlify deployment verification are recorded with real evidence after release in the task record `logs/tasks/FEATURED-PROJECTS-001.md`.
+
+### What changed
+- **One collection, four cards:** `PrettyPick LK — Inventory Management System` was moved from the separate Supporting presentation into the `PROJECTS` array as the fourth entry. All four cards are rendered by the single `BentoGrid label="Featured projects"` map; the original three project objects are unchanged.
+- **Separate presentation removed:** deleted `SUPPORTING_PROJECT`, the "Personal project / working prototype" heading, the "Supporting" badge, the second BentoGrid, and the text "Supporting work, kept separate from the three selected projects above."
+- **In-card status only:** a new optional `statusLabel` prop renders a small "Personal Project / Working Prototype" badge inside the PrettyPick card using existing badge tokens; the header row wraps on narrow screens. PrettyPick's description, technologies, seven features, footnote and `link: null` are unchanged.
+- Intro copy now reads "Four selected projects, including one personal working prototype."
+
+### Files
+- Modified: `src/components/FeaturedProjects.jsx`, `src/components/ProjectCard.jsx`, `scripts/verify-reel001.mjs`
+- Documentation: `docs/PROJECTS_CONTENT.md`, `docs/HOMEPAGE_LAYOUT.md`, `docs/DESIGN_DECISIONS.md`, `docs/IMPLEMENTATION_STATUS.md`, `docs/COMPONENT_SPEC.md`, `logs/tasks/FEATURED-PROJECTS-001.md`
+
+### Verification evidence
+Recorded in `logs/tasks/FEATURED-PROJECTS-001.md`: verifier checks for exactly four cards / PrettyPick fourth / no separate Supporting block (verifier PASSED, exit 0), production build (exit 0), and desktop/mobile browser QA at 1440/768/390/375 px with zero console errors and zero 4xx. Commit/push and Netlify confirmation are added to that record after the release steps are actually executed.

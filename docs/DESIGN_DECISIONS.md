@@ -70,9 +70,9 @@ All homepage copy was subsequently supplied and approved by the stakeholder. The
 | Content area | Source of truth |
 |--------------|-----------------|
 | Hero, About / Disciplines, Contact, Footer | `docs/HOMEPAGE_CONTENT.md` |
-| Featured Projects, Case Studies, Skills / Technologies | `docs/PROJECTS_CONTENT.md` (3 projects only) |
+| Featured Projects, Case Studies, Skills / Technologies | `docs/PROJECTS_CONTENT.md` (4 projects after FEATURED-PROJECTS-001) |
 | Education, Experience, Certifications | `docs/EDUCATION_EXPERIENCE_CONTENT.md` |
-| Creative Work band, diagrams, PrettyPick supporting card | `docs/MULTIMEDIA_CONTENT.md`, `docs/PROJECTS_CONTENT.md` |
+| Creative Work band, diagrams, PrettyPick fourth featured project | `docs/MULTIMEDIA_CONTENT.md`, `docs/PROJECTS_CONTENT.md` |
 
 | Excluded area | Reason |
 |---------------|--------|
@@ -89,7 +89,7 @@ All homepage copy was subsequently supplied and approved by the stakeholder. The
 
 - The homepage still has exactly **10 sections**. Section 5 is retitled **Case Studies & Creative Work**, but keeps `id="case-studies"` so existing anchors remain valid.
 - Creative work is a compact band (`id="creative-work"`) **inside Section 5**, never a new top-level section. Navbar adds one `Creative` link to that sub-anchor; the scroll spy observes it alongside `#case-studies`.
-- The three main software projects and three software case studies remain unchanged. **PrettyPick LK** is a fourth, separately grouped and clearly labelled supporting card; it has no demo link, credentials, personal data or figures.
+- The three original software projects and three software case studies remain unchanged. **PrettyPick LK** is the fourth card in the main Featured Projects collection, distinguished only by a small in-card status label; it has no demo link, credentials, personal data or figures.
 - SPES and CTMS diagram thumbnails and creative images/clips open a shared, accessible ImageLightbox. The lightbox provides ESC, backdrop close, focus trap and focus restore, is full-screen on mobile, and adds no motion of its own.
 - VideoCards use native `<video>` controls with `preload="metadata"` and `playsInline`, with **no autoplay**. Per-video poster attributes were later added in §8, reversing the earlier "posters deferred" decision.
 - Layout reuses the approved 4-column asymmetrical bento contract: four columns on desktop, two on tablet, one on mobile; video cards span two columns. Media frames use existing surface tokens in both themes.
@@ -121,5 +121,16 @@ Developer-approved scoped update; task record `logs/tasks/MULTIMEDIA-PROJECTS-00
 
 - **Duplicate resolution:** the two visually identical videos were identified by frame fingerprints (10 s / 60 s / 120 s). The "Music Video" entry was the duplicate; its source is now an H.264/AAC 1280×720 MP4 transcoded from the developer-specified `MMW-23-B1-05.MOV`. The 281 MB HEVC original is not committed (GitHub 100 MB limit; browser codec support) and the old unreferenced duplicate MP4 was deleted.
 - **Poster decision reversed:** §6's "posters deferred" choice is superseded. Each of the three videos has a unique 1280×720 JPEG poster extracted from its own actual frames with ffmpeg (no AI-generated or stock imagery). `VideoCard` gained an optional `poster` prop; native controls, `preload="metadata"`, `playsInline`, no autoplay, aspect ratio and responsive layout are unchanged.
-- **PrettyPick LK remains the single separately grouped Supporting card** (not a fourth main project). Only its approved copy changed: exact description, `Tailwind CSS` in the stack, seven key features and the development-status footnote, rendered by an optional `features` list in `ProjectCard` using existing tokens. No demo link, credentials, personal data or statistics.
+- **PrettyPick LK is the fourth card in the main Featured Projects collection** (developer correction, FEATURED-PROJECTS-001). It uses the same `ProjectCard` structure, span, typography and spacing as the original three; the only distinction is a small in-card "Personal Project / Working Prototype" status label. Its approved copy is unchanged: exact description, `Tailwind CSS` in the stack, seven key features and the development-status footnote. No demo link, credentials, personal data or statistics.
 - **Non-goals honoured:** no change to the three main projects, case studies, other sections, typography, colour tokens or the 4/2/1 bento grid; no new dependencies.
+
+---
+
+## 9. Featured Projects single collection (FEATURED-PROJECTS-001, 2026-11-19)
+
+Developer correction: the earlier "separately grouped Supporting card" presentation was wrong. Featured Projects now contains exactly **four** project cards in **one** `BentoGrid label="Featured projects"`: the original three unchanged, then `PrettyPick LK — Inventory Management System` as the fourth.
+
+- The separate `SUPPORTING_PROJECT` object, its "Personal project / working prototype" heading, the "Supporting" badge, the second BentoGrid and the text "Supporting work, kept separate from the three selected projects above." were removed.
+- PrettyPick uses the same `ProjectCard` structure, `featured: false` span, typography, spacing and hover behaviour as SPES and CTMS. All existing details, features and the `link: null` no-demo rule are preserved verbatim; no features were invented and no production-complete claim was made.
+- A new optional `statusLabel` prop renders a small "Personal Project / Working Prototype" badge inside that card only, using the existing badge tokens. The header row can wrap on narrow screens.
+- The intro copy now reads "Four selected projects, including one personal working prototype." The 4/2/1 bento contract, tokens and all other sections are unchanged; the fourth standard card leaves one empty desktop grid cell, accepted rather than redesigning the grid.
