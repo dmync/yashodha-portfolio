@@ -1,0 +1,65 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build output
+dist/
+build/
+out/
+.vite/
+
+# Local tooling, agent state and QA artifacts
+.opencode/
+.playwright-mcp/
+.superpowers/
+qa-reel001/
+
+# Development history — kept local only (contains personal/security notes)
+logs/
+docs/superpowers/
+
+# Pre-existing local OCR utilities and language model — never publish
+ocr_tmp.cjs
+ocr2.cjs
+eng.traineddata
+ocr_out*.txt
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.p12
+*.pfx
+*.crt
+*.der
+*.asc
+*.gpg
+*.secret
+*.token
+*credentials*
+.netrc
+.npmrc
+.yarnrc
+
+# Logs, coverage and caches
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+coverage/
+.nyc_output/
+.cache/
+*.tsbuildinfo
+
+# Editors and OS
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini
