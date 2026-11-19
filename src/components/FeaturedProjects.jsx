@@ -35,10 +35,19 @@ const PROJECTS = [
 const SUPPORTING_PROJECT = {
   title: 'PrettyPick LK — Inventory Management System',
   description:
-    'Personal inventory management system covering product management, inventory tracking, stock adjustments, sales-related flows, dashboards and charts, CSV export, consignments and image uploads.',
-  technologies: ['React', 'Vite', 'TypeScript', 'Tailwind', 'Supabase'],
+    'A practical inventory management system developed to support product management and day-to-day operations of a small clothing resale business.',
+  technologies: ['React', 'Vite', 'TypeScript', 'Tailwind CSS', 'Supabase'],
+  features: [
+    'Product management',
+    'Inventory tracking and stock adjustments',
+    'Sales management',
+    'Dashboard and reporting',
+    'CSV export',
+    'Consignment management',
+    'Product image uploads',
+  ],
   link: null,
-  footnote: 'Authentication and database security hardening in progress',
+  footnote: 'Authentication and database security hardening in progress.',
   featured: false,
 };
 

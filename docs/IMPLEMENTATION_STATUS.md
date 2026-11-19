@@ -89,7 +89,7 @@ npm run preview  # serve the production build locally
 - The Skills section’s **Multimedia & Creative** group contains only the evidence-backed tools Adobe Photoshop, Krita and 3ds Max. Unsupported, duplicative or discipline-only tags were removed from that group.
 - New components: `VideoCard.jsx`, `CreativeWorkCard.jsx`, `ImageLightbox.jsx`. `CaseStudyCard.jsx` accepts optional diagram media and an open callback.
 - Follow-up review fixes: the scroll spy recomputes from every observed section on each observer trigger; the double anchor offset on `#creative-work` was removed; standalone text links in Navbar, Contact and Footer now have at least 44 px hit height; the theme toggle label describes the next action.
-- All work uses the existing CSS custom-property tokens, Playfair Display/Inter typography, light/dark themes, 4/2/1 responsive bento grid, 44 px touch targets and the existing reduced-motion rules. No new dependencies, no autoplay and no poster attributes.
+- All work uses the existing CSS custom-property tokens, Playfair Display/Inter typography, light/dark themes, 4/2/1 responsive bento grid, 44 px touch targets and the existing reduced-motion rules. No new dependencies and no autoplay. (Per-video poster attributes were subsequently added in MULTIMEDIA-PROJECTS-001; see the addendum below.)
 
 ### Files
 
@@ -111,7 +111,27 @@ npm run preview  # serve the production build locally
 ### Concerns / outstanding issues
 
 1. The task brief describes a “Modern Creative Editorial” palette with warm ivory/terracotta/sage, but the repository’s approved `docs/DESIGN_SYSTEM.md` and implementation use the blue/neutral token set. The implementation follows the repository’s existing approved tokens; no palette substitution was made.
-2. Third-party music and participant-consent checks are still required; see `docs/MULTIMEDIA_CONTENT.md`. Do not publish the multimedia band until cleared.
-3. Posters/covers for videos remain deferred, as approved.
+2. Third-party music and participant-consent checks remain an open governance item; see `docs/MULTIMEDIA_CONTENT.md`. The portfolio is publicly deployed at the developer's direction; no new clearance claim is made here.
+3. Posters/covers for the **three video cards** were implemented in MULTIMEDIA-PROJECTS-001 (see addendum below). Still derivatives for the 2D/3D clips remain unrendered (unchanged).
 4. Two pre-existing design-token accessibility deviations remain pending stakeholder sign-off: `--color-text-muted` uses WCAG-compliant values that differ from the originally approved HEX tokens, and `--color-primary-contrast` was added for text on `--color-primary-soft`. These were not changed in this task.
 5. The **Multimedia & Creative** skills group is limited to Adobe Photoshop, Krita and 3ds Max. Tags without supporting evidence, duplicate tags and discipline-only labels were removed.
+
+---
+
+## Addendum — MULTIMEDIA-PROJECTS-001 (2026-11-19)
+
+**Status:** Implemented and verified; task record `logs/tasks/MULTIMEDIA-PROJECTS-001.md`.
+
+### What changed
+- **Duplicate video fixed:** frame-fingerprint analysis proved `/assets/video/music-video.mp4` was visually identical to `/assets/video/MMW-23-B1-05.mp4`. The “Music Video” card now uses `/assets/video/MMW-23-B1-05-MOV.mp4`, an H.264/AAC 1280×720 MP4 transcoded from the developer-specified `MMW-23-B1-05.MOV`; the unreferenced duplicate was removed.
+- **Three unique posters:** `poster-care-film.jpg`, `poster-music-video.jpg` and `poster-behind-scenes.jpg` are real 1280×720 frames from each video (65–104 KB each), wired through a new optional `poster` prop on `VideoCard`. Native controls, `preload="metadata"`, `playsInline`, no autoplay and the responsive layout are unchanged.
+- **PrettyPick LK copy updated:** the existing separately grouped Supporting card now carries the developer's exact description, `Tailwind CSS` in the stack, the seven-item key-feature list and the development-status footnote, rendered via an optional `features` list in `ProjectCard`. No demo link, credentials, PII or statistics were added.
+
+### Files
+- Modified: `src/components/VideoCard.jsx`, `src/components/CaseStudies.jsx`, `src/components/FeaturedProjects.jsx`, `src/components/ProjectCard.jsx`
+- Added: `public/assets/video/MMW-23-B1-05-MOV.mp4` and `public/assets/video/posters/{poster-care-film,poster-music-video,poster-behind-scenes}.jpg`
+- Removed: `public/assets/video/music-video.mp4` (duplicate, unreferenced)
+- Documentation: `docs/MULTIMEDIA_CONTENT.md`, `docs/PROJECTS_CONTENT.md`, `docs/DESIGN_DECISIONS.md`, `docs/IMPLEMENTATION_STATUS.md`, `logs/tasks/MULTIMEDIA-PROJECTS-001.md`
+
+### Verification evidence
+Recorded in `logs/tasks/MULTIMEDIA-PROJECTS-001.md` (static verifier, production build, desktop/mobile browser checks, code review, commit/push and Netlify/live-site confirmation).

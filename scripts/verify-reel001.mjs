@@ -301,6 +301,31 @@ function checkContent() {
     assert.ok(source.includes('hardening in progress'), 'PrettyPick footnote missing');
   });
 
+  check('FeaturedProjects.jsx keeps the approved PrettyPick supporting-card copy', () => {
+    const source = read(FEATURED_PATH);
+    const card = source.slice(source.indexOf('const SUPPORTING_PROJECT'), source.indexOf('export default function FeaturedProjects'));
+    assert.ok(
+      card.includes(
+        'A practical inventory management system developed to support product management and day-to-day operations of a small clothing resale business.',
+      ),
+      'approved PrettyPick description missing',
+    );
+    assert.match(card, /'React', 'Vite', 'TypeScript', 'Tailwind CSS', 'Supabase'/, 'approved technology list missing');
+    assert.match(card, /link:\s*null/, 'PrettyPick must not publish a demo link');
+    assert.doesNotMatch(card, /https?:\/\//, 'PrettyPick must not publish a URL');
+    for (const feature of [
+      'Product management',
+      'Inventory tracking and stock adjustments',
+      'Sales management',
+      'Dashboard and reporting',
+      'CSV export',
+      'Consignment management',
+      'Product image uploads',
+    ]) {
+      assert.ok(card.includes(`'${feature}'`), `missing PrettyPick feature: ${feature}`);
+    }
+  });
+
   check('FeaturedProjects.jsx keeps the auction project live-link-free', () => {
     const source = read(FEATURED_PATH);
     const auction = source.match(/\{\s*title:\s*'US Client House Auction Website'[\s\S]*?\n\s*\}/)?.[0];
@@ -334,13 +359,22 @@ function checkContent() {
     assert.doesNotMatch(source, /<img\b/i, 'unexpected <img> in feature media');
     assert.doesNotMatch(source, /url\(/i, 'unexpected CSS url() in feature media');
   });
+
+  check('ProjectCard.jsx renders an optional key-features list with existing tokens', () => {
+    const source = read(PROJECT_CARD_PATH);
+    assert.match(source, /features\?\.length > 0/, 'conditional features guard missing');
+    assert.match(source, /aria-label="Key features"/, 'features list aria-label missing');
+    assert.match(source, /bg-primary/, 'existing primary token not used for feature bullets');
+  });
 }
 
 const CASE_STUDIES_PATH = 'src/components/CaseStudies.jsx';
 const CREATIVE_CARD_PATH = 'src/components/CreativeWorkCard.jsx';
 const LIGHTBOX_PATH = 'src/components/ImageLightbox.jsx';
 
-// Captured verbatim from the pre-redesign CaseStudies.jsx source (19 media assets).
+// Captured from CaseStudies.jsx. The duplicate /assets/video/music-video.mp4 was
+// intentionally replaced by the MMW-23-B1-05.MOV transcode in MULTIMEDIA-PROJECTS-001,
+// and three unique real-frame posters were added. All other entries are unchanged.
 const CASE_MEDIA_SOURCES = [
   '/assets/images/diagrams/spes-eer.png',
   '/assets/images/diagrams/spes-class.png',
@@ -348,8 +382,11 @@ const CASE_MEDIA_SOURCES = [
   '/assets/images/diagrams/spes-module.png',
   '/assets/images/diagrams/ctms-flowchart.png',
   '/assets/video/MMW-23-B1-05.mp4',
-  '/assets/video/music-video.mp4',
+  '/assets/video/MMW-23-B1-05-MOV.mp4',
   '/assets/video/MMW-23-B1-05-BTS.mp4',
+  '/assets/video/posters/poster-care-film.jpg',
+  '/assets/video/posters/poster-music-video.jpg',
+  '/assets/video/posters/poster-behind-scenes.jpg',
   '/assets/images/creative/krita-child-ball.png',
   '/assets/images/creative/krita-walkcycle.png',
   '/assets/images/creative/krita-rose.png',
@@ -485,6 +522,28 @@ function checkCreative() {
     for (const mediaSrc of CASE_MEDIA_SOURCES) {
       assert.ok(source.includes(`'${mediaSrc}'`), `missing media src: ${mediaSrc}`);
     }
+  });
+
+  check('CaseStudies.jsx uses three distinct video sources and three distinct posters', () => {
+    const source = read(CASE_STUDIES_PATH);
+    const block = source.slice(source.indexOf('const VIDEO_PRODUCTION'), source.indexOf('const CREATIVE_GROUPS'));
+    const videoSrcs = [...block.matchAll(/src: '([^']+\.mp4)'/g)].map((match) => match[1]);
+    const posters = [...block.matchAll(/poster: '([^']+\.jpg)'/g)].map((match) => match[1]);
+    assert.equal(videoSrcs.length, 3, `expected 3 video sources, found ${videoSrcs.length}`);
+    assert.equal(posters.length, 3, `expected 3 posters, found ${posters.length}`);
+    assert.equal(new Set(videoSrcs).size, 3, 'video sources must all be distinct');
+    assert.equal(new Set(posters).size, 3, 'posters must all be distinct');
+    assert.ok(!block.includes('music-video.mp4'), 'the old duplicate video source is still present');
+  });
+
+  check('VideoCard.jsx forwards an optional poster to native <video> controls', () => {
+    const source = read('src/components/VideoCard.jsx');
+    assert.match(source, /\bsrc,\s*poster\b/, 'poster prop missing from VideoCard props');
+    assert.match(source, /poster=\{poster\}/, 'poster is not passed to the <video> element');
+    assert.match(source, /controls\b/, 'native controls missing');
+    assert.match(source, /preload="metadata"/, 'preload="metadata" missing');
+    assert.match(source, /playsInline\b/, 'playsInline missing');
+    assert.doesNotMatch(source, /autoPlay\b/, 'autoplay must remain absent');
   });
 
   check('CaseStudies.jsx keeps the 4 / 2 / 1 grid contract', () => {

@@ -1,8 +1,8 @@
 # Multimedia Content
 
-**Status:** Inventory for MULTIMEDIA-INTEGRATION-001 (frontend integration complete; publication deferred)  
+**Status:** Inventory for MULTIMEDIA-INTEGRATION-001 (implementation complete) + MULTIMEDIA-PROJECTS-001 (duplicate video fix, PrettyPick copy update and unique video posters complete; verified and deployed 2026-11-19)  
 **Scope:** Supporting evidence only. Software development remains the portfolio’s primary focus; multimedia lives inside Section 5.  
-**Approval:** Developer approved the consolidated task plan on 2026-11-18 (recorded in `logs/tasks/MULTIMEDIA-INTEGRATION-001.md`).
+**Approval:** Developer approved the consolidated task plan on 2026-11-18 (recorded in `logs/tasks/MULTIMEDIA-INTEGRATION-001.md`). The 2026-11-19 update and its publication/verification scope were approved by the developer in the task request (recorded in `logs/tasks/MULTIMEDIA-PROJECTS-001.md`).
 
 ## Identity note
 
@@ -13,20 +13,26 @@
 ## Publication gate
 
 - Authorship of the listed videos and artwork was confirmed by the developer.
-- **Third-party music and participant consent are specific clearance considerations, not ownership problems.** They must still be checked before public deployment.
-- Do **not** publish or deploy the multimedia band until those checks are cleared.
-- Video covers/posters are deferred. The UI therefore uses native video controls with `preload="metadata"`, `playsInline`, no autoplay and no `poster` attribute.
-- Still derivatives for the short 2D/3D clips exist in `public/assets/` but are not rendered as covers yet.
+- **Third-party music and participant consent are specific clearance considerations, not ownership problems.** The portfolio is publicly deployed at the developer's direction (live since 2026-11-18). Treat any residual music/participant clearance as an outstanding governance item to revisit; no new claims about clearance are made here.
+- Video covers/posters are **implemented** as of MULTIMEDIA-PROJECTS-001. Each VideoCard keeps native controls with `preload="metadata"`, `playsInline`, no autoplay, and now has a unique `poster` frame extracted from its own video. This supersedes the earlier "posters deferred" decision.
+- Still derivatives for the short 2D/3D clips exist in `public/assets/` but are not rendered as covers yet (unchanged).
 
 ---
 
 ## 1. Video Production — three VideoCards
 
-| Path | UI use | Role | Tool / method | Rights note |
-|---|---|---|---|---|
-| `/assets/video/MMW-23-B1-05.mp4` | VideoCard: Care is also a way of saying “I love you” | Script, direction and editing | Video production / editing | Developer-authored coursework. Contains credited cast and may contain third-party music; obtain participant consent and music clearance before publishing. |
-| `/assets/video/music-video.mp4` | VideoCard “Music Video” | Course production edit | Video editing | Developer-authored coursework. Third-party music is a specific clearance consideration; do not publish until cleared. |
-| `/assets/video/MMW-23-B1-05-BTS.mp4` | VideoCard “Behind the Scenes” | Behind-the-scenes footage | Video production | Developer-authored coursework. Visible participants require consent review before publishing. |
+| Path | Poster | UI use | Role | Tool / method | Rights note |
+|---|---|---|---|---|---|
+| `/assets/video/MMW-23-B1-05.mp4` | `/assets/video/posters/poster-care-film.jpg` | VideoCard: Care is also a way of saying “I love you” | Script, direction and editing | Video production / editing | Developer-authored coursework. Contains credited cast and may contain third-party music; consent and music clearance remain an open governance item. |
+| `/assets/video/MMW-23-B1-05-MOV.mp4` | `/assets/video/posters/poster-music-video.jpg` | VideoCard “Music Video” | Course production edit | Video editing | Transcoded from the developer-specified `MMW-23-B1-05.MOV` coursework source. Developer-authored; third-party music is a clearance consideration to revisit. |
+| `/assets/video/MMW-23-B1-05-BTS.mp4` | `/assets/video/posters/poster-behind-scenes.jpg` | VideoCard “Behind the Scenes” | Behind-the-scenes footage | Video production | Developer-authored coursework. Visible participants require consent review; open governance item. |
+
+### Duplicate fix and poster provenance (MULTIMEDIA-PROJECTS-001)
+
+- The former `/assets/video/music-video.mp4` was **visually identical** to `/assets/video/MMW-23-B1-05.mp4` (frame fingerprints matched at 10 s, 60 s and 120 s despite different encodings), so two cards showed the same footage.
+- The “Music Video” card now uses `/assets/video/MMW-23-B1-05-MOV.mp4`: an H.264 / AAC 1280×720 30 fps MP4 transcoded from the exact developer-specified source `D:\UOVT\SEMESTER-3\vedio\MMW-23-B1-05\MMW-23-B1-05.MOV` (281 MB HEVC, 1920×1080, 3:35). The 281 MB source is **not** committed (GitHub 100 MB file limit) and HEVC is not reliably browser-playable. The old duplicate file was removed once unreferenced.
+- All three final videos were re-verified as distinct by frame fingerprint comparison (non-zero pairwise differences at 10 s, 60 s and 120 s).
+- Each poster is a single real frame from **its own** video, extracted with ffmpeg: `poster-care-film.jpg` at 45 s (104 KB), `poster-music-video.jpg` at 25 s (65 KB), `poster-behind-scenes.jpg` at 45 s (67 KB). All are 1280×720 JPEG (16:9, matching the video aspect ratio), unique by SHA-256, and contain no AI-generated or stock imagery.
 
 ---
 
@@ -78,7 +84,7 @@
 
 ## Component mapping
 
-- `VideoCard.jsx` renders the three Video Production assets with native controls.
+- `VideoCard.jsx` renders the three Video Production assets with native controls and an optional per-video `poster` image.
 - `CreativeWorkCard.jsx` renders Digital Art, 2D/3D & VFX, and UI/UX assets.
 - `ImageLightbox.jsx` displays all non-VideoCard images/video expansions with keyboard and focus handling.
 - `CaseStudyCard.jsx` renders the diagram thumbnails and opens the same lightbox.

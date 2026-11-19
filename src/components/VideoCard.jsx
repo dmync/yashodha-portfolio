@@ -1,4 +1,4 @@
-export default function VideoCard({ src, title, role, tool, width = 1280, height = 720 }) {
+export default function VideoCard({ src, poster, title, role, tool, width = 1280, height = 720 }) {
   return (
     <article
       role="listitem"
@@ -6,6 +6,7 @@ export default function VideoCard({ src, title, role, tool, width = 1280, height
     >
       <video
         src={src}
+        poster={poster}
         width={width}
         height={height}
         controls

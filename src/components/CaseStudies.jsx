@@ -109,6 +109,7 @@ const DIAGRAMS_BY_STUDY = {
 const VIDEO_PRODUCTION = [
   {
     src: '/assets/video/MMW-23-B1-05.mp4',
+    poster: '/assets/video/posters/poster-care-film.jpg',
     title: 'Care is also a way of saying “I love you”',
     role: 'Script, direction and editing',
     tool: 'Video production',
@@ -116,7 +117,8 @@ const VIDEO_PRODUCTION = [
     height: 720,
   },
   {
-    src: '/assets/video/music-video.mp4',
+    src: '/assets/video/MMW-23-B1-05-MOV.mp4',
+    poster: '/assets/video/posters/poster-music-video.jpg',
     title: 'Music Video',
     role: 'Course production edit',
     tool: 'Video editing',
@@ -125,6 +127,7 @@ const VIDEO_PRODUCTION = [
   },
   {
     src: '/assets/video/MMW-23-B1-05-BTS.mp4',
+    poster: '/assets/video/posters/poster-behind-scenes.jpg',
     title: 'Behind the Scenes',
     role: 'Behind-the-scenes footage',
     tool: 'Video production',

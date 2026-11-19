@@ -59,7 +59,7 @@ The following are **not** approved values. They are assumptions or implementatio
 - CMS vs static content decision.
 - Form backend (if a contact form is added later).
 - Deployment target.
-- Image/video asset strategy — resolved for this task in §6; video covers/posters remain deferred.
+- Image/video asset strategy — resolved for MULTIMEDIA-INTEGRATION-001 in §6; video covers/posters were later implemented in §8.
 
 ---
 
@@ -91,11 +91,11 @@ All homepage copy was subsequently supplied and approved by the stakeholder. The
 - Creative work is a compact band (`id="creative-work"`) **inside Section 5**, never a new top-level section. Navbar adds one `Creative` link to that sub-anchor; the scroll spy observes it alongside `#case-studies`.
 - The three main software projects and three software case studies remain unchanged. **PrettyPick LK** is a fourth, separately grouped and clearly labelled supporting card; it has no demo link, credentials, personal data or figures.
 - SPES and CTMS diagram thumbnails and creative images/clips open a shared, accessible ImageLightbox. The lightbox provides ESC, backdrop close, focus trap and focus restore, is full-screen on mobile, and adds no motion of its own.
-- VideoCards use native `<video>` controls with `preload="metadata"` and `playsInline`. There is **no autoplay and no poster attribute**; covers/posters remain deferred.
+- VideoCards use native `<video>` controls with `preload="metadata"` and `playsInline`, with **no autoplay**. Per-video poster attributes were later added in §8, reversing the earlier "posters deferred" decision.
 - Layout reuses the approved 4-column asymmetrical bento contract: four columns on desktop, two on tablet, one on mobile; video cards span two columns. Media frames use existing surface tokens in both themes.
 - Existing approved typography, colour tokens, theme behaviour and reduced-motion handling were preserved. The repository’s approved tokens are the blue/neutral palette in `docs/DESIGN_SYSTEM.md`; no terracotta/sage palette substitution was made because that wording is not present in the approved docs or implementation.
 - The **Multimedia & Creative** skills group contains only the evidence-backed tools **Adobe Photoshop**, **Krita** and **3ds Max**. Unsupported, duplicative or discipline-only tags were removed from that group.
-- Rights/consent clearance and publishing remain deferred. `docs/MULTIMEDIA_CONTENT.md` records per-asset status; do not publish the multimedia band until the noted third-party music and participant-consent checks are cleared.
+- Rights/consent clearance remains an open governance item. The portfolio is publicly deployed at the developer's direction; `docs/MULTIMEDIA_CONTENT.md` records per-asset status and the residual clearance considerations to revisit.
 
 ---
 
@@ -112,3 +112,14 @@ Selected by the developer from four researched concepts and approved for product
 - **Responsive contract:** 4 / 2 / 1 card columns; no horizontal overflow at 1440 / 768 / 390 px.
 - **Preserved behaviour:** theme toggle with system-preference fallback, skip link, focus-visible outlines, mobile nav, footer links, lightbox keyboard handling, and `prefers-reduced-motion`.
 - **Content authority:** contact from the approved prototype (both emails, no phone, only `View Projects` / `Send Message`, `Send Message` → Gmail mailto); skills and experience from source code (source wins). No invented achievements, results or links; the auction project has no live link; PrettyPick carries its documented limitation.
+
+---
+
+## 8. Video duplicate fix, PrettyPick copy update and video posters (MULTIMEDIA-PROJECTS-001, 2026-11-19)
+
+Developer-approved scoped update; task record `logs/tasks/MULTIMEDIA-PROJECTS-001.md`. Reel 001 direction and every other section are unchanged.
+
+- **Duplicate resolution:** the two visually identical videos were identified by frame fingerprints (10 s / 60 s / 120 s). The "Music Video" entry was the duplicate; its source is now an H.264/AAC 1280×720 MP4 transcoded from the developer-specified `MMW-23-B1-05.MOV`. The 281 MB HEVC original is not committed (GitHub 100 MB limit; browser codec support) and the old unreferenced duplicate MP4 was deleted.
+- **Poster decision reversed:** §6's "posters deferred" choice is superseded. Each of the three videos has a unique 1280×720 JPEG poster extracted from its own actual frames with ffmpeg (no AI-generated or stock imagery). `VideoCard` gained an optional `poster` prop; native controls, `preload="metadata"`, `playsInline`, no autoplay, aspect ratio and responsive layout are unchanged.
+- **PrettyPick LK remains the single separately grouped Supporting card** (not a fourth main project). Only its approved copy changed: exact description, `Tailwind CSS` in the stack, seven key features and the development-status footnote, rendered by an optional `features` list in `ProjectCard` using existing tokens. No demo link, credentials, personal data or statistics.
+- **Non-goals honoured:** no change to the three main projects, case studies, other sections, typography, colour tokens or the 4/2/1 bento grid; no new dependencies.

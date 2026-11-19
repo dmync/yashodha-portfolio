@@ -8,7 +8,7 @@ const SPROCKET_STYLE = {
   backgroundImage: 'repeating-linear-gradient(90deg, var(--color-primary) 0 9px, transparent 9px 19px)',
 };
 
-export default function ProjectCard({ index, title, description, technologies, link, linkLabel, footnote, featured = false }) {
+export default function ProjectCard({ index, title, description, features, technologies, link, linkLabel, footnote, featured = false }) {
   const spanClasses = featured
     ? 'md:col-span-2 lg:col-span-2 lg:row-span-2'
     : 'md:col-span-1 lg:col-span-2';
@@ -45,6 +45,17 @@ export default function ProjectCard({ index, title, description, technologies, l
           {title}
         </h3>
         <p className="mt-4 text-body-sm text-text-secondary md:text-body">{description}</p>
+
+        {features?.length > 0 && (
+          <ul className="mt-6 grid gap-x-6 gap-y-2 lg:grid-cols-2" aria-label="Key features">
+            {features.map((feature) => (
+              <li key={feature} className="flex items-start gap-2 text-body-sm text-text-secondary">
+                <span aria-hidden="true" className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                {feature}
+              </li>
+            ))}
+          </ul>
+        )}
 
         <div className="mt-auto pt-8">
           <ul className="flex flex-wrap gap-2" aria-label="Technologies used">

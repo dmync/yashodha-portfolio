@@ -176,14 +176,17 @@
 
 ## 10. ProjectCard
 
-**Responsibility:** Specialized `BentoCard` for a featured project in the BentoGrid. Presents project title, short description, technologies (tags), and a link to the project/case study.
+**Responsibility:** Specialized `BentoCard` for a featured project in the BentoGrid. Presents project title, short description, technologies (tags), and a link to the project/case study. Can also present an optional key-features list.
 
 **Props (plain language):**
 - Inherits all `BentoCard` props.
 - `technologies` — list of tag labels to render as `Tag` chips.
 - `featured` — whether this is a featured (larger-span) project — optional boolean.
+- `features` — optional list of key features. When present and non-empty, rendered as an accessible list between the description and the technology chips; one column on mobile/tablet, two columns from `lg` where the supporting card spans two grid columns.
+- `index` — zero-based card number, displayed as `Project 01` etc.
+- `link`, `linkLabel`, `footnote` — optional link and supporting note; omitted for the personal prototype.
 
-**Variants / states:** `featured` (larger grid span), `standard`.
+**Variants / states:** `featured` (larger grid span), `standard`, optional `features` list.
 
 **Relationships:** Child of `BentoGrid`; contains `Tag` components; rendered in Featured Projects section.
 
@@ -257,6 +260,25 @@
 
 ---
 
+## 15. VideoCard
+
+**Responsibility:** Renders one Video Production item in the nested Creative Work band inside Case Studies, using the browser's native video player.
+
+**Props (plain language):**
+- `src` — path to the MP4 video (required).
+- `poster` — optional path to a real frame image from that same video, shown before playback.
+- `title` — accessible label via `aria-label` and the visible card heading.
+- `role`, `tool` — supporting metadata labels.
+- `width`, `height` — intrinsic video dimensions (default 1280 x 720); the rendered frame keeps a 16:9 aspect ratio.
+
+**Variants / states:** Single video-card variant. Native controls with `preload="metadata"`, `playsInline`, no autoplay; posters are optional.
+
+**Relationships:** Child of the Creative Work media list in `CaseStudies.jsx`; no lightbox. Added under MULTIMEDIA-INTEGRATION-001; the `poster` prop was added under MULTIMEDIA-PROJECTS-001.
+
+**Status:** Implemented.
+
+---
+
 ## Component relationships summary
 
 ```
@@ -279,9 +301,13 @@ Featured Projects
         └── Tag (technologies)
 
 Case Studies
-└── BentoGrid
-    └── BentoCard / CaseStudyCard
-        └── Tag (technologies)
+├── BentoGrid
+│   └── BentoCard / CaseStudyCard
+│       └── Tag (technologies)
+└── Creative Work (nested #creative-work)
+    ├── VideoCard (native video + optional poster)
+    ├── CreativeWorkCard
+    └── ImageLightbox
 
 Skills / Technologies
 ├── EditorialHeading
@@ -308,4 +334,4 @@ Footer
     (SectionDivider above if needed)
 ```
 
-> **Focused list:** `Newsletter` and `Loader` components are deliberately excluded. No other components should be added without stakeholder approval.
+> **Focused list:** `Newsletter` and `Loader` components are deliberately excluded. `VideoCard`, `CreativeWorkCard` and `ImageLightbox` were added later under the developer-approved MULTIMEDIA-INTEGRATION-001 scope. No further components should be added without stakeholder approval.
