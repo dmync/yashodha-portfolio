@@ -172,3 +172,22 @@ Recorded in `logs/tasks/FEATURED-PROJECTS-001.md`: verifier checks for exactly f
 
 ### Verification evidence
 Recorded in `logs/tasks/FEATURED-PROJECTS-UI-001.md`: read-only browser recon with measured geometry before the fix, verifier PASSED (exit 0), production build (exit 0), and desktop/tablet/mobile browser QA plus independent review. Release evidence is appended after commit/push and Netlify confirmation.
+
+---
+
+## Addendum — CASE-STUDY-PRETTYPICK-001 (2026-11-20)
+
+**Status:** implementation and verification in progress; release evidence is recorded with real results in `logs/tasks/CASE-STUDY-PRETTYPICK-001.md` after commit/push and Netlify confirmation.
+
+### What changed
+- The Case Study Records section now has four records: the original three unchanged plus `PrettyPick LK — Inventory Management System` as RECORD 04.
+- PrettyPick's seven UI features are labelled "Features shown in the UI"; its working-prototype status and security-hardening footnote are visible, and it has no link.
+- No screenshots were added: the developer confirmed none exist and approved the amended no-image design. Real screenshots can be attached later as lightbox exhibits.
+- `CaseStudyCard.jsx` gained three optional, defaulted props (`contributionLabel`, `statusLabel`, `footnote`) so the original three records render unchanged.
+
+### Files
+- Source: `src/components/CaseStudies.jsx`, `src/components/CaseStudyCard.jsx`
+- Tooling/docs: `scripts/verify-reel001.mjs`, `docs/HOMEPAGE_LAYOUT.md`, `docs/COMPONENT_SPEC.md`, `docs/DESIGN_DECISIONS.md`, `docs/superpowers/specs/2026-11-20-case-study-records-prettypick-design.md`, `docs/superpowers/plans/2026-11-20-case-study-records-prettypick.md`, `logs/tasks/CASE-STUDY-PRETTYPICK-001.md`
+
+### Verification evidence
+So far: focused TDD RED/GREEN for both source tasks, two independent task-scoped reviews (both Approved), full verifier PASSED (exit 0) and production build PASSED (exit 0). Desktop/tablet/mobile browser QA, whole-branch review and release evidence are pending and will be appended to `logs/tasks/CASE-STUDY-PRETTYPICK-001.md` only after they actually happen.

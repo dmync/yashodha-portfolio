@@ -18,7 +18,7 @@ The homepage must contain the following sections, in this exact order. No other 
 | 2 | Hero | EditorialHeading, EditorialBody, AccentButton | Page introduction, primary CTA |
 | 3 | About / Disciplines | EditorialHeading, EditorialBody, Badge/Tag | Discipline tags |
 | 4 | Featured Projects | BentoGrid, BentoCard / ProjectCard | Single bento grid with four equally presented project cards: the original three plus PrettyPick LK as the fourth, with a small in-card status label |
-| 5 | Case Studies & Creative Work | BentoGrid, BentoCard / CaseStudyCard, VideoCard, CreativeWorkCard, ImageLightbox | Bento grid plus one nested Creative Work band; `id="case-studies"` is unchanged |
+| 5 | Case Studies & Creative Work | BentoGrid, BentoCard / CaseStudyCard, VideoCard, CreativeWorkCard, ImageLightbox | Bento grid with four case-study records (original three plus PrettyPick LK, without screenshots) plus one nested Creative Work band; `id="case-studies"` is unchanged |
 | 6 | Skills / Technologies | EditorialHeading, Badge/Tag, SectionDivider | Skill tags |
 | 7 | Education & Certifications | EditorialHeading, EditorialBody, EditorialCaption | Content from `docs/EDUCATION_EXPERIENCE_CONTENT.md` |
 | 8 | Experience | EditorialHeading, EditorialBody, EditorialCaption | Content from `docs/EDUCATION_EXPERIENCE_CONTENT.md` |
@@ -36,7 +36,7 @@ Do not add these sections or components without stakeholder approval.
 ### Section 5 internal structure (not a new section)
 
 - The visible heading is **Case Studies & Creative Work**; the section id remains `case-studies` so the existing Navbar anchor continues to work.
-- The three software case studies remain unchanged. Diagram thumbnails inside the SPES and CTMS cards open the shared ImageLightbox.
+- The three original software case studies remain unchanged. Diagram thumbnails inside the SPES and CTMS cards open the shared ImageLightbox. **PrettyPick LK — Inventory Management System** is the fourth record (CASE-STUDY-PRETTYPICK-001), with its seven UI features, working-prototype status and hardening footnote, and **no screenshots** because none exist. Its list is labelled "Features shown in the UI" rather than "Recorded contributions".
 - A single compact band with `id="creative-work"` sits **below** the case-study cards, inside Section 5. It contains four labelled groups: Video Production, Digital Art & Graphic Design, 2D/3D & VFX, and UI/UX Design.
 - Navbar adds one link, **Creative** → `#creative-work`. The scroll spy observes this sub-anchor alongside `#case-studies`; it is not counted as an eleventh homepage section.
 - Section 4 keeps the original three projects unchanged and renders PrettyPick LK as the fourth card in the **same** Featured Projects grid, with a small in-card "Personal Project / Working Prototype" status label. There is no separate supporting category or section. All four cards use the same standard card presentation (FEATURED-PROJECTS-UI-001).

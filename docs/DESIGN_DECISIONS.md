@@ -148,3 +148,15 @@ Developer directed a scoped polish pass using the SPES and CTMS cards as exact r
 - **Information preserved:** every title, description, technology, link, footnote, PrettyPick's seven features and its status label are unchanged. No features were invented, no information was deleted to force equal heights, and no images were added.
 - **No images/object-fit:** these cards use a shared CSS-only `.fcard__media` band; there are no `<img>` elements, so object-fit consistency was already inherent and no asset change was needed or made.
 - Non-goals honoured: no changes to Case Studies, Creative Work, tokens, theme, responsive column contract or any other section; no new dependencies.
+
+---
+
+## 11. PrettyPick LK as the fourth Case Study Record (CASE-STUDY-PRETTYPICK-001, 2026-11-20)
+
+Developer asked that Case Study Records mirror the four Featured Projects; the section had three records. The developer initially asked for UI screenshots, then confirmed none exist and approved an amended design that adds the record without images.
+
+- **Content:** `PrettyPick LK — Inventory Management System` is RECORD 04, using only the approved copy in `docs/PROJECTS_CONTENT.md` — the one-sentence description, five technologies, seven UI features, `Personal Project / Working Prototype` status and the security-hardening footnote. No demo link, credentials, PII or figures.
+- **Honest labelling:** the seven items are features shown in the UI, so the record sets `contributionLabel: 'Features shown in the UI'`; the shared default remains `Recorded contributions` for the original three records.
+- **No screenshots:** no images were generated or reused from other projects. Real screenshots can be added later as `media` exhibits without changing the record's structure.
+- **Component change:** `CaseStudyCard.jsx` gained three optional, defaulted props — `contributionLabel`, `statusLabel`, `footnote` — so the original three records render exactly as before.
+- **Non-goals honoured:** the original three records, Creative Work band, Featured Projects, theme, tokens, 4/2/1 responsive grid and all other sections were left untouched; no new dependency.

@@ -196,18 +196,23 @@
 
 ## 11. CaseStudyCard
 
-**Responsibility:** Specialized `BentoCard` for a case study in the BentoGrid. Presents case study title, summary, outcome highlights, and a link to the full case study.
+**Responsibility:** Specialized `BentoCard` for a case study in the BentoGrid. Presents the case-study title, description, recorded contributions (or a differently labelled list, such as a personal project's UI features), technology chips, optional exhibit thumbnails and an optional link.
 
 **Props (plain language):**
-- Inherits all `BentoCard` props.
-- `outcome` — short outcome statement (optional).
-- `technologies` — list of tag labels (optional).
+- `index` — zero-based record number, shown as `RECORD 01 / CASE STUDY` etc.
+- `title`, `description`, `contributions`, `technologies` — the record's content.
+- `contributionLabel` — optional accessible label for the list; defaults to `Recorded contributions`. PrettyPick uses `Features shown in the UI`.
+- `statusLabel` — optional short badge-style text in the header, replacing the default `FILED / 04` (or `FEATURED FILE` on the featured record).
+- `footnote` — optional short note rendered above `END OF RECORD`.
+- `featured` — optional larger-span variant; used by the auction record only.
+- `media`, `onMediaOpen` — optional exhibit thumbnails that open the shared `ImageLightbox`.
+- `link` — optional source link.
 
-**Variants / states:** `featured`, `standard`.
+**Variants / states:** `featured`, `standard`; optional status label, footnote, exhibits and link.
 
-**Relationships:** Child of `BentoGrid`; contains `Tag` components; rendered in Case Studies section.
+**Relationships:** Child of `BentoGrid`; rendered in the Case Studies section of Section 5.
 
-**Status:** Implementation proposal.
+**Status:** Implemented. Four records: the original three plus PrettyPick LK (CASE-STUDY-PRETTYPICK-001).
 
 ---
 

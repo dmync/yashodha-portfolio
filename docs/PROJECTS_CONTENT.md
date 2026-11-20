@@ -70,7 +70,7 @@ A web-based Cricket Tournament Management System with two phases: (1) Live Crick
 ### Fourth Featured Project — PrettyPick LK
 
 **Title:** PrettyPick LK — Inventory Management System  
-**Classification:** Personal project / working prototype. Rendered as the fourth card in the main Featured Projects collection with a small in-card status label — not a separate category or section.  
+**Classification:** Personal project / working prototype. Rendered as the fourth card in the main Featured Projects collection with a small in-card status label — not a separate category or section. It is also the fourth record in the Case Study Records section (CASE-STUDY-PRETTYPICK-001), with its seven UI features labelled as such. No UI screenshots were supplied, so no images are attached.  
 **Tech Stack:** React, Vite, TypeScript, Tailwind CSS, Supabase.
 
 **Description (approved copy, 2026-11-19):** A practical inventory management system developed to support product management and day-to-day operations of a small clothing resale business.
