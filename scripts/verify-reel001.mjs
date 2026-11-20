@@ -878,6 +878,19 @@ function checkContact() {
     );
   });
 
+  check('Contact detail anchors use break-all so long values cannot force grid min-content', () => {
+    const detailAnchors = [...contact.matchAll(/<a\b([\s\S]*?)>/g)].map(([, attrs]) => attrs);
+    assert.ok(detailAnchors.length > 0, 'no contact anchors found');
+    assert.ok(
+      detailAnchors.some((attrs) => attrs.includes('break-all')),
+      'contact detail anchors must use break-all',
+    );
+    assert.ok(
+      !detailAnchors.some((attrs) => attrs.includes('break-words')),
+      'break-words still lets the email min-content force a grid track wider than the viewport',
+    );
+  });
+
   check('phone number and tel: links are absent from all site source', () => {
     for (const path of siteSourceFiles()) {
       const source = read(path);

@@ -50,7 +50,7 @@ export default function ContactSection() {
                       href={item.href}
                       target={item.href.startsWith('http') ? '_blank' : undefined}
                       rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                      className="inline-flex min-h-11 items-center break-words underline-offset-4 hover:text-primary hover:underline"
+                      className="inline-flex min-h-11 items-center break-all underline-offset-4 hover:text-primary hover:underline"
                     >
                       {item.value}
                     </a>
