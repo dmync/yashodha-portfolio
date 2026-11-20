@@ -629,6 +629,15 @@ function checkCreative() {
       assert.ok(source.includes(token), `missing lightbox keyboard token: ${token}`);
     }
   });
+
+  check('CaseStudyCard.jsx keeps default labels and supports optional status/footnote', () => {
+    const source = read('src/components/CaseStudyCard.jsx');
+    assert.match(source, /contributionLabel = 'Recorded contributions'/, 'default contribution label missing');
+    assert.match(source, /aria-label=\{contributionLabel\}/, 'contributions list does not use the label prop');
+    assert.match(source, /statusLabel \|\| \(featured \? 'FEATURED FILE' : 'FILED \/ 04'\)/, 'status label fallback missing');
+    assert.match(source, /\{footnote && \(/, 'optional footnote render missing');
+    assert.match(source, /text-caption text-text-muted/, 'footnote token style missing');
+  });
 }
 
 const SKILLS_PATH = 'src/components/SkillsSection.jsx';

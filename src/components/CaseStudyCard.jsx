@@ -8,6 +8,9 @@ export default function CaseStudyCard({
   featured = false,
   media,
   onMediaOpen,
+  contributionLabel = 'Recorded contributions',
+  statusLabel,
+  footnote,
 }) {
   const spanClasses = featured
     ? 'md:col-span-2 lg:col-span-2 lg:row-span-2'
@@ -23,7 +26,7 @@ export default function CaseStudyCard({
 
       <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-b border-border pb-3 pl-4 sm:pl-6">
         <span className="hud hud--brass">RECORD {recordNumber} / CASE STUDY</span>
-        <span className="hud">{featured ? 'FEATURED FILE' : 'FILED / 04'}</span>
+        <span className="hud">{statusLabel || (featured ? 'FEATURED FILE' : 'FILED / 04')}</span>
       </div>
 
       <div className="flex flex-1 flex-col p-6 pl-5 md:p-8 md:pl-7">
@@ -33,7 +36,7 @@ export default function CaseStudyCard({
         <p className="mt-4 text-body-sm text-text-secondary md:text-body">{description}</p>
 
         {contributions && contributions.length > 0 && (
-          <ul className="mt-6 border-t border-border" aria-label="Recorded contributions">
+          <ul className="mt-6 border-t border-border" aria-label={contributionLabel}>
             {contributions.map((item) => (
               <li key={item} className="flex gap-3 border-b border-border py-2 text-body-sm text-text-secondary">
                 <span className="hud mt-1 shrink-0" aria-hidden="true">—</span>
@@ -104,6 +107,10 @@ export default function CaseStudyCard({
               View source on GitHub
               <span aria-hidden="true">{'\u2192'}</span>
             </a>
+          )}
+
+          {footnote && (
+            <p className="mt-6 text-caption text-text-muted">{footnote}</p>
           )}
 
           <p className="hud mt-8 border-t border-border pt-3" aria-hidden="true">END OF RECORD / {recordNumber}</p>
