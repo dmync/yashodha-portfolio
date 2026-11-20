@@ -218,7 +218,7 @@ Developer authorized release. Docs commit `48157eb` pushed to `origin/main`; loc
 
 ## Addendum — CONTACT-OVERFLOW-001 (2026-11-20)
 
-**Status:** implementation, verifier, build, QA and review COMPLETE; commit of docs/logs, push to `origin/main` and Netlify release PENDING developer authorization. Source commit `db4fa13`.
+**Status:** RELEASED (2026-11-20). Developer authorized release; source commit `db4fa13` and docs commit `781a9ab` pushed to `origin/main` (local and remote SHA matched at `781a9abd5d1c3102f22dd1414699978a6e0c9ffb`). Netlify production live bundle confirmed below.
 
 ### What changed
 - The Gmail detail anchor in `ContactSection.jsx` now uses Tailwind `break-all` instead of `break-words`. This lets the long email soften its intrinsic min-content so the Contact grid track shrinks to the available width instead of painting 7px past the viewport at 375px.
@@ -231,4 +231,7 @@ Developer authorized release. Docs commit `48157eb` pushed to `origin/main`; loc
 - Design/plan: `docs/superpowers/specs/2026-11-20-contact-overflow-design.md`, `docs/superpowers/plans/2026-11-20-contact-overflow.md`
 
 ### Verification evidence
-Focused verifier RED→GREEN; full verifier `all` PASSED (exit 0); production build PASSED (exit 0, `index-Ba7qK-E0.js` / `index-BowvgHeE.css`, after stopping a preview server that transiently locked `dist`). QA PASS at 375/390/768/1440: zero horizontal overflow, contact grid track 258px at 375, full Gmail address readable and unclipped, all content/links unchanged, light/dark parity, 0 console errors, 0 4xx. Reviewer APPROVED with no Critical/Important findings; one Minor verifier-naming note deferred. Full evidence in `logs/tasks/CONTACT-OVERFLOW-001.md`. Release evidence will be added only after authorization, push and Netlify confirmation.
+Focused verifier RED→GREEN; full verifier `all` PASSED (exit 0); production build PASSED (exit 0, `index-Ba7qK-E0.js` / `index-BowvgHeE.css`, after stopping a preview server that transiently locked `dist`). QA PASS at 375/390/768/1440: zero horizontal overflow, contact grid track 258px at 375, full Gmail address readable and unclipped, all content/links unchanged, light/dark parity, 0 console errors, 0 4xx. Reviewer APPROVED with no Critical/Important findings; one Minor verifier-naming note deferred. Full evidence in `logs/tasks/CONTACT-OVERFLOW-001.md`.
+
+### Release evidence (2026-11-20)
+Developer authorized release. Pushed `db4fa13` (source/verifier) and `781a9ab` (docs) to `origin/main`; local and remote SHA matched at `781a9abd5d1c3102f22dd1414699978a6e0c9ffb`. Netlify production site `https://yashodha-portfolio.netlify.app/` confirmed serving the new bundle `/assets/index-Ba7qK-E0.js` + `/assets/index-BowvgHeE.css`, matching the local build. Live JS contains the `inline-flex min-h-11 items-center break-all` contact anchor, the old `break-words` anchor is absent, and both emails, location, GitHub, LinkedIn and the `Send Message` CTA are present. (The lone `tel:` token in the bundle is React's internal input-type map `tel:!0`, not a phone link.)
