@@ -638,6 +638,38 @@ function checkCreative() {
     assert.match(source, /\{footnote && \(/, 'optional footnote render missing');
     assert.match(source, /text-caption text-text-muted/, 'footnote token style missing');
   });
+
+  check('CaseStudies.jsx renders four records with PrettyPick fourth', () => {
+    const source = read(CASE_STUDIES_PATH);
+    const block = source.slice(source.indexOf('const CASE_STUDIES = ['), source.indexOf('\n];'));
+    const titles = [...block.matchAll(/title: '([^']+)'/g)].map((m) => m[1]);
+    assert.deepEqual(titles, [
+      'US Client House Auction Website',
+      'Sales Performance Evaluation System',
+      'Cricket Tournament Management System',
+      'PrettyPick LK — Inventory Management System',
+    ], 'expected three original records followed by PrettyPick');
+    assertAllStrings(block, [
+      'A practical inventory management system developed to support product management and day-to-day operations of a small clothing resale business.',
+      ...["React", "Vite", "TypeScript", "Tailwind CSS", "Supabase"],
+      'Product management', 'Inventory tracking and stock adjustments', 'Sales management',
+      'Dashboard and reporting', 'CSV export', 'Consignment management', 'Product image uploads',
+      "contributionLabel: 'Features shown in the UI'",
+      "statusLabel: 'Personal Project / Working Prototype'",
+      'Authentication and database security hardening in progress.',
+      'link: null', 'featured: false',
+    ], 'PrettyPick case study copy');
+    assert.doesNotMatch(block, /case-studies\/prettypick/, 'no screenshot assets may be referenced');
+    assert.match(source, /tag="RECORDS \/ 04"/, 'scene tag must count four records');
+    assert.doesNotMatch(source, /same three projects/, 'stale three-project intro copy remains');
+    assert.match(source, /the four projects featured above/, 'four-project intro copy missing');
+    assertAllStrings(block, [
+      'Angular frontend development from Figma designs',
+      'Full-stack development with role-based login and access control',
+      'Match simulation engine and ball-by-ball event generation',
+      'https://github.com/dmync/spes', 'https://github.com/dmync/CTMS',
+    ], 'original three records must be preserved');
+  });
 }
 
 const SKILLS_PATH = 'src/components/SkillsSection.jsx';

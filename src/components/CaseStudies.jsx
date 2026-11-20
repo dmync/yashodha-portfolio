@@ -47,6 +47,26 @@ const CASE_STUDIES = [
     link: 'https://github.com/dmync/CTMS',
     featured: false,
   },
+  {
+    title: 'PrettyPick LK — Inventory Management System',
+    description:
+      'A practical inventory management system developed to support product management and day-to-day operations of a small clothing resale business.',
+    contributions: [
+      'Product management',
+      'Inventory tracking and stock adjustments',
+      'Sales management',
+      'Dashboard and reporting',
+      'CSV export',
+      'Consignment management',
+      'Product image uploads',
+    ],
+    technologies: ['React', 'Vite', 'TypeScript', 'Tailwind CSS', 'Supabase'],
+    contributionLabel: 'Features shown in the UI',
+    statusLabel: 'Personal Project / Working Prototype',
+    footnote: 'Authentication and database security hardening in progress.',
+    link: null,
+    featured: false,
+  },
 ];
 
 const DIAGRAMS_BY_STUDY = {
@@ -281,13 +301,13 @@ export default function CaseStudies() {
 
   return (
     <>
-      <SceneFrame id="case-studies" scene={4} label="RECORDS" tag="RECORDS / 03" footerTag="SOFTWARE / PRIMARY">
+      <SceneFrame id="case-studies" scene={4} label="RECORDS" tag="RECORDS / 04" footerTag="SOFTWARE / PRIMARY">
         <div className="container">
           <div className="mb-12 max-w-prose">
             <p className="hud hud--teal">04 — In detail</p>
             <h2 className="mt-4 text-h2 font-display text-text-primary">Case Study Records</h2>
             <p className="mt-4 text-body text-text-secondary">
-              A closer look at the same three projects: the scope, my contributions, and the technologies involved.
+              A closer look at the four projects featured above: the scope, my contributions, and the technologies involved.
               Supporting creative work follows below.
             </p>
           </div>
