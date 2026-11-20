@@ -646,6 +646,12 @@ function checkCreative() {
   check('CaseStudies.jsx renders four records with PrettyPick fourth', () => {
     const source = read(CASE_STUDIES_PATH);
     const block = source.slice(source.indexOf('const CASE_STUDIES = ['), source.indexOf('\n];'));
+    assert.doesNotMatch(block, /\bfeatured\s*:/, 'no case study may use a special featured variant');
+    assertAllStrings(block, [
+      'US Client House Auction Website',
+      'Angular frontend development from Figma designs',
+      'Angular', 'Node.js', 'Figma',
+    ], 'auction record content must be preserved');
     const titles = [...block.matchAll(/title: '([^']+)'/g)].map((m) => m[1]);
     assert.deepEqual(titles, [
       'US Client House Auction Website',
@@ -661,7 +667,7 @@ function checkCreative() {
       "contributionLabel: 'Features shown in the UI'",
       "statusLabel: 'Personal Project / Working Prototype'",
       'Authentication and database security hardening in progress.',
-      'link: null', 'featured: false',
+      'link: null',
     ], 'PrettyPick case study copy');
     assert.doesNotMatch(block, /case-studies\/prettypick/, 'no screenshot assets may be referenced');
     assert.match(source, /tag="RECORDS \/ 04"/, 'scene tag must count four records');

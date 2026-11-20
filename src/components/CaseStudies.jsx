@@ -19,7 +19,6 @@ const CASE_STUDIES = [
     ],
     technologies: ['Angular', 'Node.js', 'Figma'],
     link: null,
-    featured: true,
   },
   {
     title: 'Sales Performance Evaluation System',
@@ -32,7 +31,6 @@ const CASE_STUDIES = [
     ],
     technologies: ['PHP', 'MySQL', 'Bootstrap 5', 'Chart.js', 'AJAX'],
     link: 'https://github.com/dmync/spes',
-    featured: false,
   },
   {
     title: 'Cricket Tournament Management System',
@@ -45,7 +43,6 @@ const CASE_STUDIES = [
     ],
     technologies: ['PHP', 'MySQL', 'JavaScript', 'AJAX', 'JSON'],
     link: 'https://github.com/dmync/CTMS',
-    featured: false,
   },
   {
     title: 'PrettyPick LK — Inventory Management System',
@@ -65,7 +62,6 @@ const CASE_STUDIES = [
     statusLabel: 'Personal Project / Working Prototype',
     footnote: 'Authentication and database security hardening in progress.',
     link: null,
-    featured: false,
   },
 ];
 
