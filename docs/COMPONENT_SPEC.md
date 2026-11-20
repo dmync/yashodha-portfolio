@@ -202,17 +202,16 @@
 - `index` — zero-based record number, shown as `RECORD 01 / CASE STUDY` etc.
 - `title`, `description`, `contributions`, `technologies` — the record's content.
 - `contributionLabel` — optional accessible label for the list; defaults to `Recorded contributions`. PrettyPick uses `Features shown in the UI`.
-- `statusLabel` — optional short badge-style text in the header, replacing the default `FILED / 04` (or `FEATURED FILE` on the featured record).
+- `statusLabel` — optional short badge-style text in the header, replacing the default `FILED / 04`.
 - `footnote` — optional short note rendered above `END OF RECORD`.
-- `featured` — optional larger-span variant; used by the auction record only.
 - `media`, `onMediaOpen` — optional exhibit thumbnails that open the shared `ImageLightbox`.
-- `link` — optional source link.
+- `link` — optional source link; rendered in a `min-h-11` row alongside the footnote so cards align.
 
-**Variants / states:** `featured`, `standard`; optional status label, footnote, exhibits and link.
+**Variants / states:** one standard presentation for all four records; optional status label, footnote, exhibits and link. No `featured` variant.
 
 **Relationships:** Child of `BentoGrid`; rendered in the Case Studies section of Section 5.
 
-**Status:** Implemented. Four records: the original three plus PrettyPick LK (CASE-STUDY-PRETTYPICK-001).
+**Status:** Implemented. Four equal cards: the original three plus PrettyPick LK (CASE-STUDY-PRETTYPICK-001), all normalized by CASE-STUDY-BALANCE-001 with a balanced 2×2 desktop grid.
 
 ---
 

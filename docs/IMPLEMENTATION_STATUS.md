@@ -183,7 +183,7 @@ Recorded in `logs/tasks/FEATURED-PROJECTS-UI-001.md`: read-only browser recon wi
 - The Case Study Records section now has four records: the original three unchanged plus `PrettyPick LK — Inventory Management System` as RECORD 04.
 - PrettyPick's seven UI features are labelled "Features shown in the UI"; its working-prototype status and security-hardening footnote are visible, and it has no link.
 - No screenshots were added: the developer confirmed none exist and approved the amended no-image design. Real screenshots can be attached later as lightbox exhibits.
-- `CaseStudyCard.jsx` gained three optional, defaulted props (`contributionLabel`, `statusLabel`, `footnote`) so the original three records render unchanged.
+- `CaseStudyCard.jsx` gained three optional, defaulted props (`contributionLabel`, `statusLabel`, `footnote`) so the original three records render unchanged. All four records were later normalized to one presentation by CASE-STUDY-BALANCE-001 (see final addendum).
 
 ### Files
 - Source: `src/components/CaseStudies.jsx`, `src/components/CaseStudyCard.jsx`
@@ -191,3 +191,22 @@ Recorded in `logs/tasks/FEATURED-PROJECTS-UI-001.md`: read-only browser recon wi
 
 ### Verification evidence
 Executed: focused TDD RED/GREEN for both source tasks, two independent task-scoped reviews (both Approved), full verifier PASSED (exit 0), production build PASSED (exit 0), real-Chrome QA PASS at 1440/768/390/375 (4/2/1 grid, 0px overflow, 0 console errors, 0 4xx), whole-branch review APPROVED with no Critical/Important findings, push to `origin/main` with matching remote SHA and Netlify live-bundle confirmation. Full evidence in `logs/tasks/CASE-STUDY-PRETTYPICK-001.md`.
+
+---
+
+## Addendum — CASE-STUDY-BALANCE-001 (2026-11-20)
+
+**Status:** implementation, verifier, build, QA and review COMPLETE; commit of docs/logs, push to `origin/main` and Netlify release PENDING developer authorization. Source commits `7ff09e6` and `c69f11d`.
+
+### What changed
+- All four Case Study Records cards now share one standard presentation: `md:col-span-1 lg:col-span-2`, `text-h4` title, `FILED / 04` default badge (PrettyPick keeps its status label) and a shared `min-h-11` link/footnote row.
+- The auction record's `featured: true` variant, 2×2 span, larger title and `FEATURED FILE` badge were removed; desktop is now a balanced 2×2 with no empty cell, tablet 2 columns and mobile 1 column.
+- Every title, description, feature/contribution, technology, diagram exhibit, link, footnote and status label is preserved verbatim. No content, images or dependencies added.
+- Featured Projects, Creative Work, theme, tokens and all other sections are untouched.
+
+### Files
+- Source: `src/components/CaseStudyCard.jsx`, `src/components/CaseStudies.jsx`
+- Tooling/docs: `scripts/verify-reel001.mjs`, `docs/HOMEPAGE_LAYOUT.md`, `docs/COMPONENT_SPEC.md`, `docs/DESIGN_DECISIONS.md`, `docs/superpowers/specs/2026-11-20-case-study-balance-design.md`, `docs/superpowers/plans/2026-11-20-case-study-balance.md`, `logs/tasks/CASE-STUDY-BALANCE-001.md`
+
+### Verification evidence
+Full verifier `all` PASSED (exit 0); production build PASSED (exit 0). QA PASS at 1440/768/390/375: balanced 2×2 desktop with no empty cell, 2×2 tablet, 1×4 mobile, verbatim content, aligned 44px footers, light/dark parity, 0 console errors, 0 4xx. Reviewer APPROVED with no Critical/Important findings. One pre-existing, out-of-scope 7px horizontal overflow at 375px in the untouched Contact section was triaged as non-blocking and recommended for a separate ticket. Full evidence in `logs/tasks/CASE-STUDY-BALANCE-001.md`. Release evidence will be added only after authorization, push and Netlify confirmation.

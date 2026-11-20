@@ -58,12 +58,12 @@ Sections 4 (Featured Projects) and 5 (Case Studies) use a **Bento Grid**.
 
 | Card type | Column span | Row span | Priority |
 |-----------|-------------|----------|----------|
-| Featured record (Section 5 only) | 2 columns | 2 rows | High |
 | Standard project (Section 4) | 2 columns | 1 row | Equal |
-| Case study highlight | 2 columns | 2 rows | High |
-| Standard case study | 1 column | 1–2 rows | Medium |
+| Standard case study (Section 5) | 2 columns | 1 row | Equal |
 
-> **Section 4 amendment (FEATURED-PROJECTS-UI-001):** Featured Projects now uses **four equal 2-column × 1-row cards** — a balanced 2×2 desktop arrangement with no empty cell. The "featured record" 2-row example above applies to Section 5 (Case Studies), not to Section 4. All four project cards share one `ProjectCard` presentation: identical span, `text-h4` title, media band, padding, badge tokens, feature list, chips and a 44px minimum footer row so linked and footnote-only cards align. This changes only Section 4; the 4 / 2 / 1 responsive column contract is unchanged.
+> **Both four-card collections are now balanced (CASE-STUDY-BALANCE-001):** Featured Projects and Case Study Records each use four equal 2-column × 1-row cards — a balanced 2×2 desktop grid with no empty cell, 2 columns on tablet and 1 on mobile. The former "featured record" 2-row variant was removed from both sections.
+
+> **Four-card grid amendments:** Featured Projects (FEATURED-PROJECTS-UI-001) and Case Study Records (CASE-STUDY-BALANCE-001) both use **four equal 2-column × 1-row cards** — a balanced 2×2 desktop arrangement with no empty cell. There is no longer a "featured record" 2-row variant in either section. All four cards in each collection share one presentation: identical span, `text-h4` title, padding, badge tokens, list style, chips and a 44px minimum footer row so linked and footnote-only cards align. The 4 / 2 / 1 responsive column contract is unchanged.
 
 > **On 12-column CSS:** The visual arrangement is and must remain a **4-column asymmetrical bento grid**. If a 12-column CSS grid is used internally for implementation convenience, it must be grouped/subdivided so that the *visual* result preserves exactly the 4-column arrangement. It must **not** become a 12-column visual layout, and the 4-column visual contract must be stated wherever a 12-column implementation is mentioned.
 

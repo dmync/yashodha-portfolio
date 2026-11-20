@@ -141,13 +141,24 @@ Developer correction: the earlier "separately grouped Supporting card" presentat
 
 ## 10. Featured Projects card consistency (FEATURED-PROJECTS-UI-001, 2026-11-19)
 
-Developer directed a scoped polish pass using the SPES and CTMS cards as exact references. Section 4 is now the only exception to the earlier "one featured 2×2 card" example in `HOMEPAGE_LAYOUT.md`.
+Developer directed a scoped polish pass using the SPES and CTMS cards as exact references. This removed the "one featured 2×2 card" example from Section 4; CASE-STUDY-BALANCE-001 later removed it from Section 5 as well, so neither section uses it now.
 
 - **Measured inconsistencies:** the auction card alone used `featured: true` (2×2 span, 32px title, "Featured" badge), producing a 498px internal gap and an empty desktop grid cell; a link row is 44px while a footnote-only row is ~16.8px, offsetting chips/link rows by 27.2px.
 - **Resolution:** the special `featured` variant was removed. All four project cards now use one standard presentation — same 2-column span, `text-h4` title, media band, padding, badge tokens, feature-list style, chips and footer placement. The link/footnote row has a 44px minimum height so cards in the same row align. The desktop grid is a balanced 2×2 with no empty cell; tablet remains 2 columns and mobile 1 column.
 - **Information preserved:** every title, description, technology, link, footnote, PrettyPick's seven features and its status label are unchanged. No features were invented, no information was deleted to force equal heights, and no images were added.
 - **No images/object-fit:** these cards use a shared CSS-only `.fcard__media` band; there are no `<img>` elements, so object-fit consistency was already inherent and no asset change was needed or made.
-- Non-goals honoured: no changes to Case Studies, Creative Work, tokens, theme, responsive column contract or any other section; no new dependencies.
+- Non-goals honoured: no changes to Case Studies, Creative Work, tokens, theme, responsive column contract or any other section; no new dependencies. The Case Studies part of this note was later superseded by §12.
+
+---
+
+## 12. Balanced Case Study Records (CASE-STUDY-BALANCE-001, 2026-11-20)
+
+Developer reported that the four Case Study Records cards were unbalanced and asked for the same arrangement as Featured Projects. The auction record still used `featured: true` (2×2 span, larger title, "FEATURED FILE" badge), leaving an empty desktop cell beside the fourth record.
+
+- **Resolution:** the `featured` variant was removed from both `CaseStudies.jsx` data and `CaseStudyCard.jsx`. All four records now share `md:col-span-1 lg:col-span-2`, a `text-h4` title, the `FILED / 04` default badge (PrettyPick keeps its explicit status label) and a shared `min-h-11` link/footnote row so `END OF RECORD` markers align.
+- **Result:** desktop is a balanced 2×2 with no empty cell; tablet stays 2 columns and mobile 1 column. The 4/2/1 responsive contract is unchanged.
+- **Information preserved:** every title, description, contribution/feature list, technology, diagram exhibit, GitHub link, footnote and status label is unchanged. No content, images or dependencies were added.
+- **Non-goals honoured:** Featured Projects, Creative Work, theme, tokens, scene frame and all other sections untouched.
 
 ---
 
