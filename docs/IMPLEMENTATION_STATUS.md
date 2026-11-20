@@ -196,7 +196,7 @@ Executed: focused TDD RED/GREEN for both source tasks, two independent task-scop
 
 ## Addendum — CASE-STUDY-BALANCE-001 (2026-11-20)
 
-**Status:** implementation, verifier, build, QA and review COMPLETE; commit of docs/logs, push to `origin/main` and Netlify release PENDING developer authorization. Source commits `7ff09e6` and `c69f11d`.
+**Status:** COMPLETE — implemented, verified, reviewed, committed, pushed to `origin/main` and confirmed live on Netlify (2026-11-20). Source commits `7ff09e6` and `c69f11d`; docs commit `48157eb` (plus the final release-evidence docs commit). Live bundle `index-hfkEml5A.js` at https://yashodha-portfolio.netlify.app/ contains the balanced four-record contract. Full evidence in `logs/tasks/CASE-STUDY-BALANCE-001.md`.
 
 ### What changed
 - All four Case Study Records cards now share one standard presentation: `md:col-span-1 lg:col-span-2`, `text-h4` title, `FILED / 04` default badge (PrettyPick keeps its status label) and a shared `min-h-11` link/footnote row.
@@ -209,4 +209,7 @@ Executed: focused TDD RED/GREEN for both source tasks, two independent task-scop
 - Tooling/docs: `scripts/verify-reel001.mjs`, `docs/HOMEPAGE_LAYOUT.md`, `docs/COMPONENT_SPEC.md`, `docs/DESIGN_DECISIONS.md`, `docs/superpowers/specs/2026-11-20-case-study-balance-design.md`, `docs/superpowers/plans/2026-11-20-case-study-balance.md`, `logs/tasks/CASE-STUDY-BALANCE-001.md`
 
 ### Verification evidence
-Full verifier `all` PASSED (exit 0); production build PASSED (exit 0). QA PASS at 1440/768/390/375: balanced 2×2 desktop with no empty cell, 2×2 tablet, 1×4 mobile, verbatim content, aligned 44px footers, light/dark parity, 0 console errors, 0 4xx. Reviewer APPROVED with no Critical/Important findings. One pre-existing, out-of-scope 7px horizontal overflow at 375px in the untouched Contact section was triaged as non-blocking and recommended for a separate ticket. Full evidence in `logs/tasks/CASE-STUDY-BALANCE-001.md`. Release evidence will be added only after authorization, push and Netlify confirmation.
+Full verifier `all` PASSED (exit 0); production build PASSED (exit 0). QA PASS at 1440/768/390/375: balanced 2×2 desktop with no empty cell, 2×2 tablet, 1×4 mobile, verbatim content, aligned 44px footers, light/dark parity, 0 console errors, 0 4xx. Reviewer APPROVED with no Critical/Important findings. One pre-existing, out-of-scope 7px horizontal overflow at 375px in the untouched Contact section was triaged as non-blocking and recommended for a separate ticket. Full evidence in `logs/tasks/CASE-STUDY-BALANCE-001.md`.
+
+### Release evidence
+Developer authorized release. Docs commit `48157eb` pushed to `origin/main`; local and remote SHA matched at `48157eb7a68c9c424ebe8e26e1f2a4a4d4402ba1`. Netlify production deploy confirmed: live HTML references `/assets/index-hfkEml5A.js` and `/assets/index-GJ-DOuv0.css`, matching the local build; both assets HTTP 200 with byte counts matching local (JS 268,027; CSS 18,778). Live bundle contains all four record titles, `Features shown in the UI`, PrettyPick's status and footnote, `FILED / 04`, `md:col-span-1 lg:col-span-2` and `min-h-11`; `FEATURED FILE` is absent. Live URL https://yashodha-portfolio.netlify.app/.
