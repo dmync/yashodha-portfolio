@@ -151,6 +151,18 @@ Developer directed a scoped polish pass using the SPES and CTMS cards as exact r
 
 ---
 
+## 11. PrettyPick LK as the fourth Case Study Record (CASE-STUDY-PRETTYPICK-001, 2026-11-20)
+
+Developer asked that Case Study Records mirror the four Featured Projects; the section had three records. The developer initially asked for UI screenshots, then confirmed none exist and approved an amended design that adds the record without images.
+
+- **Content:** `PrettyPick LK — Inventory Management System` is RECORD 04, using only the approved copy in `docs/PROJECTS_CONTENT.md` — the one-sentence description, five technologies, seven UI features, `Personal Project / Working Prototype` status and the security-hardening footnote. No demo link, credentials, PII or figures.
+- **Honest labelling:** the seven items are features shown in the UI, so the record sets `contributionLabel: 'Features shown in the UI'`; the shared default remains `Recorded contributions` for the original three records.
+- **No screenshots:** no images were generated or reused from other projects. Real screenshots can be added later as `media` exhibits without changing the record's structure.
+- **Component change:** `CaseStudyCard.jsx` gained three optional, defaulted props — `contributionLabel`, `statusLabel`, `footnote` — so the original three records render exactly as before.
+- **Non-goals honoured:** the original three records, Creative Work band, Featured Projects, theme, tokens, 4/2/1 responsive grid and all other sections were left untouched; no new dependency.
+
+---
+
 ## 12. Balanced Case Study Records (CASE-STUDY-BALANCE-001, 2026-11-20)
 
 Developer reported that the four Case Study Records cards were unbalanced and asked for the same arrangement as Featured Projects. The auction record still used `featured: true` (2×2 span, larger title, "FEATURED FILE" badge), leaving an empty desktop cell beside the fourth record.
@@ -162,12 +174,12 @@ Developer reported that the four Case Study Records cards were unbalanced and as
 
 ---
 
-## 11. PrettyPick LK as the fourth Case Study Record (CASE-STUDY-PRETTYPICK-001, 2026-11-20)
+## 13. 375px Contact section horizontal overflow (CONTACT-OVERFLOW-001, 2026-11-20)
 
-Developer asked that Case Study Records mirror the four Featured Projects; the section had three records. The developer initially asked for UI screenshots, then confirmed none exist and approved an amended design that adds the record without images.
+QA found a pre-existing 7px horizontal overflow at 375×812 during CASE-STUDY-BALANCE-001; the developer asked for it to be fixed in its own task. Systematic debugging measured the cause before any fix was proposed.
 
-- **Content:** `PrettyPick LK — Inventory Management System` is RECORD 04, using only the approved copy in `docs/PROJECTS_CONTENT.md` — the one-sentence description, five technologies, seven UI features, `Personal Project / Working Prototype` status and the security-hardening footnote. No demo link, credentials, PII or figures.
-- **Honest labelling:** the seven items are features shown in the UI, so the record sets `contributionLabel: 'Features shown in the UI'`; the shared default remains `Recorded contributions` for the original three records.
-- **No screenshots:** no images were generated or reused from other projects. Real screenshots can be added later as `media` exhibits without changing the record's structure.
-- **Component change:** `CaseStudyCard.jsx` gained three optional, defaulted props — `contributionLabel`, `statusLabel`, `footnote` — so the original three records render exactly as before.
-- **Non-goals honoured:** the original three records, Creative Work band, Featured Projects, theme, tokens, 4/2/1 responsive grid and all other sections were left untouched; no new dependency.
+- **Root cause:** the Gmail detail anchor used Tailwind `break-words` (`overflow-wrap: break-word`), which does not contribute soft-wrap opportunities to intrinsic min-content sizing. The unbroken email's 273.59px min-content propagated through 40px row padding and 2px borders into a 315.59px grid track, painting to x=366.59 — 7px past the 360px client width at 375px. At 390px the same right edge left 8.41px spare, which is why it was invisible there. `ContactSection.jsx` had not changed since the initial release.
+- **Resolution:** replaced `break-words` with `break-all` on the contact detail anchors only — one class token, no new CSS. Browser-injected `break-all` measured document client/scroll width equal (360/360), track 258px, item right 309px and `dl` client/scroll 256/256 with no clipped text.
+- **Rejected:** `min-w-0` on grid items or `overflow-x: hidden` removes the page overflow but clips the email behind `dl`'s `overflow: hidden` (symptom fix); a custom `overflow-wrap: anywhere` rule adds CSS where the existing `break-all` utility already works.
+- **Information preserved:** both emails, location, GitHub, LinkedIn, the single `Send Message` mailto CTA, body copy, theme and tokens are unchanged. No phone number or `tel:` link was introduced.
+- **Non-goals honoured:** no other section, global CSS rule or dependency changed.

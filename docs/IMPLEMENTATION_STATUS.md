@@ -213,3 +213,22 @@ Full verifier `all` PASSED (exit 0); production build PASSED (exit 0). QA PASS a
 
 ### Release evidence
 Developer authorized release. Docs commit `48157eb` pushed to `origin/main`; local and remote SHA matched at `48157eb7a68c9c424ebe8e26e1f2a4a4d4402ba1`. Netlify production deploy confirmed: live HTML references `/assets/index-hfkEml5A.js` and `/assets/index-GJ-DOuv0.css`, matching the local build; both assets HTTP 200 with byte counts matching local (JS 268,027; CSS 18,778). Live bundle contains all four record titles, `Features shown in the UI`, PrettyPick's status and footnote, `FILED / 04`, `md:col-span-1 lg:col-span-2` and `min-h-11`; `FEATURED FILE` is absent. Live URL https://yashodha-portfolio.netlify.app/.
+
+---
+
+## Addendum — CONTACT-OVERFLOW-001 (2026-11-20)
+
+**Status:** implementation, verifier, build, QA and review COMPLETE; commit of docs/logs, push to `origin/main` and Netlify release PENDING developer authorization. Source commit `db4fa13`.
+
+### What changed
+- The Gmail detail anchor in `ContactSection.jsx` now uses Tailwind `break-all` instead of `break-words`. This lets the long email soften its intrinsic min-content so the Contact grid track shrinks to the available width instead of painting 7px past the viewport at 375px.
+- Measured root cause: email min-content 273.59px + 40px row padding + 2px `dl` borders = 315.59px grid track, right edge 366.59 vs clientWidth 360 at 375px. At 390px the same edge leaves 8.41px spare, so the bug was invisible there.
+- All contact details, labels, hrefs, the single `Send Message` CTA, body copy, theme and tokens are preserved verbatim. No `overflow-x: hidden`, `min-w-0`, new CSS, dependency or other section change.
+
+### Files
+- Source: `src/components/ContactSection.jsx`
+- Tooling/docs: `scripts/verify-reel001.mjs`, `docs/IMPLEMENTATION_STATUS.md`, `docs/DESIGN_DECISIONS.md`, `logs/tasks/CONTACT-OVERFLOW-001.md`
+- Design/plan: `docs/superpowers/specs/2026-11-20-contact-overflow-design.md`, `docs/superpowers/plans/2026-11-20-contact-overflow.md`
+
+### Verification evidence
+Focused verifier RED→GREEN; full verifier `all` PASSED (exit 0); production build PASSED (exit 0, `index-Ba7qK-E0.js` / `index-BowvgHeE.css`, after stopping a preview server that transiently locked `dist`). QA PASS at 375/390/768/1440: zero horizontal overflow, contact grid track 258px at 375, full Gmail address readable and unclipped, all content/links unchanged, light/dark parity, 0 console errors, 0 4xx. Reviewer APPROVED with no Critical/Important findings; one Minor verifier-naming note deferred. Full evidence in `logs/tasks/CONTACT-OVERFLOW-001.md`. Release evidence will be added only after authorization, push and Netlify confirmation.
