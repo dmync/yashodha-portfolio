@@ -5,16 +5,13 @@ export default function CaseStudyCard({
   contributions,
   technologies,
   link,
-  featured = false,
   media,
   onMediaOpen,
   contributionLabel = 'Recorded contributions',
   statusLabel,
   footnote,
 }) {
-  const spanClasses = featured
-    ? 'md:col-span-2 lg:col-span-2 lg:row-span-2'
-    : 'md:col-span-1 lg:col-span-2';
+  const spanClasses = 'md:col-span-1 lg:col-span-2';
   const recordNumber = String(index + 1).padStart(2, '0');
 
   return (
@@ -26,11 +23,11 @@ export default function CaseStudyCard({
 
       <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-b border-border pb-3 pl-4 sm:pl-6">
         <span className="hud hud--brass">RECORD {recordNumber} / CASE STUDY</span>
-        <span className="hud">{statusLabel || (featured ? 'FEATURED FILE' : 'FILED / 04')}</span>
+        <span className="hud">{statusLabel || 'FILED / 04'}</span>
       </div>
 
       <div className="flex flex-1 flex-col p-6 pl-5 md:p-8 md:pl-7">
-        <h3 className={`font-display leading-1.3 text-text-primary ${featured ? 'text-h3 md:text-h2' : 'text-h4'}`}>
+        <h3 className="font-display leading-1.3 text-h4 text-text-primary">
           {title}
         </h3>
         <p className="mt-4 text-body-sm text-text-secondary md:text-body">{description}</p>
@@ -97,21 +94,23 @@ export default function CaseStudyCard({
             ))}
           </ul>
 
-          {link && (
-            <a
-              href={link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-sm font-medium text-primary underline underline-offset-4"
-            >
-              View source on GitHub
-              <span aria-hidden="true">{'\u2192'}</span>
-            </a>
-          )}
+          <div className="mt-6 flex min-h-11 flex-wrap items-center gap-4">
+            {link && (
+              <a
+                href={link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-11 items-center gap-2 rounded-sm font-medium text-primary underline underline-offset-4"
+              >
+                View source on GitHub
+                <span aria-hidden="true">{'\u2192'}</span>
+              </a>
+            )}
 
-          {footnote && (
-            <p className="mt-6 text-caption text-text-muted">{footnote}</p>
-          )}
+            {footnote && (
+              <p className="text-caption text-text-muted">{footnote}</p>
+            )}
+          </div>
 
           <p className="hud mt-8 border-t border-border pt-3" aria-hidden="true">END OF RECORD / {recordNumber}</p>
         </div>

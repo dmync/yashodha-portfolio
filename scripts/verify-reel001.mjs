@@ -630,11 +630,15 @@ function checkCreative() {
     }
   });
 
-  check('CaseStudyCard.jsx keeps default labels and supports optional status/footnote', () => {
+  check('CaseStudyCard.jsx uses one standard presentation with optional labels', () => {
     const source = read('src/components/CaseStudyCard.jsx');
     assert.match(source, /contributionLabel = 'Recorded contributions'/, 'default contribution label missing');
     assert.match(source, /aria-label=\{contributionLabel\}/, 'contributions list does not use the label prop');
-    assert.match(source, /statusLabel \|\| \(featured \? 'FEATURED FILE' : 'FILED \/ 04'\)/, 'status label fallback missing');
+    assert.match(source, /statusLabel \|\| 'FILED \/ 04'/, 'status label fallback missing');
+    assert.doesNotMatch(source, /\bfeatured\b/i, 'CaseStudyCard must not keep a featured-only branch');
+    assert.match(source, /const spanClasses = 'md:col-span-1 lg:col-span-2';/, 'all cards must use the same span');
+    assert.match(source, /text-h4/, 'all card titles must use text-h4');
+    assert.match(source, /mt-6 flex min-h-11 flex-wrap items-center gap-4/, 'footer row needs a consistent 44px minimum height');
     assert.match(source, /\{footnote && \(/, 'optional footnote render missing');
     assert.match(source, /text-caption text-text-muted/, 'footnote token style missing');
   });
